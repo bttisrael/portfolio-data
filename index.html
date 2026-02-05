@@ -11,16 +11,18 @@
         .container { max-width: 1000px; margin: auto; padding: 2rem; }
         .project { border-left: 5px solid var(--accent); background: #f9f9f9; padding: 1.5rem; margin-bottom: 2rem; border-radius: 0 8px 8px 0; }
         h2 { color: var(--primary); margin-top: 0; }
-        .tag { display: inline-block; background: #e0e0e0; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.85rem; margin-right: 0.5rem; }
+        .tag { display: inline-block; background: #e0e0e0; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.85rem; margin-right: 0.5rem; margin-bottom: 0.5rem; }
         .impact { font-weight: bold; color: #27ae60; }
         footer { text-align: center; padding: 2rem; background: #eee; font-size: 0.9rem; }
+        a { color: var(--accent); text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Data Analytics & Operations Research Portfolio</h1>
-    <p>Specialized in End-to-End data projects </p>
+    <h1>Israel Buratto</h1>
+    <p>Data Analytics & Operations Research Portfolio | Specialized in End-to-End data projects </p>
 </header>
 
 <div class="container">
@@ -28,7 +30,7 @@
     <div class="project">
         <h2>Prescriptive Supply Chain Optimizer | Gurobi & BigQuery</h2>
         <p><strong>Challenge:</strong> Mitigating detention costs and logistical bottlenecks caused by fixed DC capacities and variable transit times.</p>
-        <p><strong>Stack: </strong> 
+        <p><strong>Stack: </strong>  
             <span class="tag">Gurobi (MILP)</span> 
             <span class="tag">Python</span> 
             <span class="tag">BigQuery</span> 
@@ -39,6 +41,22 @@
         <p class="impact">Impact: Achieved 100% elimination of detention costs in simulation, optimizing 14,000+ constraints and 4.5M+ decision variables in under 30 seconds.</p>
         <a href="https://lookerstudio.google.com/u/0/reporting/e586e8a9-75b3-43b0-932c-94433e50a7cc/page/faOIF" target="_blank">View Live Dashboard</a>
         <a href="https://github.com/bttisrael/logistics-network-solver" target="_blank" style="margin-left: 15px;">View Technical Documentation & Code</a>
+    </div>
+
+        <div class="project">
+        <h2>Sales Forecasting for Financial Planning | Rossmann Drugstores</h2>
+        <p><strong>Challenge:</strong> Providing an accurate 6-week sales forecast for 1,115 stores to determine the CFO's budget for store renovations.</p>
+        <p><strong>Stack: </strong>  
+            <span class="tag">Python</span> 
+            <span class="tag">XGBoost</span> 
+            <span class="tag">Machine Learning</span> 
+            <span class="tag">Tableau</span>
+            <span class="tag">Exploratory Data Analysis</span>
+        </p>
+        <p>Developed a predictive model using the <b>CRISP-DM</b> methodology. The solution handles complex seasonality, competition effects, and school holidays. The results were delivered through an interactive executive dashboard for drill-down analysis.</p>
+        <p class="impact">Impact: Achieved a 9% MAPE (Mean Absolute Percentage Error), enabling high-precision financial scenarios (Best vs. Worst case) for R$ 285M+ in predicted revenue.</p>
+        <a href="https://public.tableau.com/app/profile/israel.a.o.buratto/viz/Rossmann-predict-sales/Painel1?publish=yes" target="_blank">View Live Tableau Dashboard</a>
+        <a href="https://github.com/bttisrael/rossmann-sales-prediction" target="_blank" style="margin-left: 15px;">View Technical Documentation & Code</a>
     </div>
 
     <div class="project">
@@ -63,12 +81,8 @@
 </div>
 
 <footer>
-    <p>Let's connect on <a href="YOUR_LINKEDIN_URL">LinkedIn</a></p>
+    <p>Let's connect on <a href="https://www.linkedin.com/in/israelburatto/" target="_blank">LinkedIn</a></p>
 </footer>
 
 </body>
-
 </html>
-
-
-
