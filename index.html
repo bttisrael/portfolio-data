@@ -4,115 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Israel Buratto - Data Analytics & Operations Research</title>
-<style>
-    :root { 
-        --primary: #1a2a3a; 
-        --accent: #3498db; 
-        --text: #444; 
-        --bg: #f4f7f6;
-        --white: #ffffff;
-    }
-    
-    body { font-family: 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background: var(--bg); }
-    
-    header { 
-        background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%); 
-        color: white; padding: 4rem 1rem; text-align: center; 
-    }
+    <style>
+        :root { 
+            --primary: #1a2a3a; 
+            --accent: #3498db; 
+            --text: #444; 
+            --bg: #f4f7f6;
+            --white: #ffffff;
+            --border: #e1e8ed;
+        }
+        
+        body { font-family: 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background: var(--bg); }
+        
+        header { 
+            background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%); 
+            color: white; padding: 4rem 1rem; text-align: center; 
+        }
 
-    .container { max-width: 1200px; margin: auto; padding: 2rem; }
-    
-    /* Reenquadramento do Card */
-    .project { 
-        display: flex;
-        flex-direction: row; /* Alinhamento lado a lado */
-        background: var(--white); 
-        margin-bottom: 3rem; 
-        border-radius: 12px; 
-        overflow: hidden; 
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        min-height: 450px; /* Garante uma altura mínima elegante */
-    }
+        .container { max-width: 900px; margin: auto; padding: 2rem; }
+        
+        /* Stacked Card Layout */
+        .project { 
+            display: flex;
+            flex-direction: column; /* Empilhamento Vertical */
+            background: var(--white); 
+            margin-bottom: 4rem; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
 
-    /* Ajuste de Enquadramento da Imagem */
-    .project-image { 
-        flex: 1; /* Ocupa metade do card */
-        min-width: 450px;
-        position: relative;
-        overflow: hidden;
-    }
+        /* Dashboard Image at Top */
+        .project-image { 
+            width: 100%;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
 
-    .project-image img { 
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* ESSENCIAL: Preenche o espaço cortando as sobras sem distorcer */
-        object-position: center top; /* Foca no topo da imagem (onde geralmente estão os filtros do dashboard) */
-        transition: transform 0.5s ease;
-    }
-    
-    .project:hover .project-image img {
-        transform: scale(1.05); /* Efeito suave de zoom ao passar o mouse */
-    }
+        .project-image img { 
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        
+        .project:hover .project-image img {
+            transform: scale(1.02); /* Zoom sutil para indicar interação */
+        }
 
-    .project-content { 
-        flex: 1.2; /* Ocupa um pouco mais que a metade para o texto */
-        padding: 2.5rem; 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+        /* Content Below Image */
+        .project-content { 
+            padding: 2.5rem; 
+        }
 
-    h2 { color: var(--primary); margin-top: 0; font-size: 1.7rem; margin-bottom: 0.5rem; }
-    
-    .challenge-text { font-style: italic; color: #666; margin-bottom: 1rem; display: block; }
-    
-    .section-title { font-weight: bold; color: var(--primary); display: block; margin-top: 1rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
-    
-    .badge-container { margin: 0.5rem 0 1.5rem 0; }
-    .badge { display: inline-block; margin-right: 5px; height: 24px; vertical-align: middle; }
+        h2 { color: var(--primary); margin-top: 0; font-size: 1.8rem; margin-bottom: 1rem; }
+        
+        .challenge-box { margin-bottom: 1.5rem; }
+        .challenge-box strong { color: var(--primary); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; }
+        
+        .section-title { font-weight: bold; color: var(--primary); display: block; margin-top: 1.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        
+        .badge-container { margin: 0.5rem 0 1.5rem 0; display: flex; flex-wrap: wrap; gap: 8px; }
+        .badge { height: 24px; vertical-align: middle; }
 
-    .impact-box { 
-        background: #f0fdf4; 
-        border-left: 4px solid #22c55e; 
-        padding: 1.2rem; 
-        margin: 1rem 0;
-        border-radius: 0 8px 8px 0;
-    }
-    .impact-box b { color: #166534; display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 0.8rem; }
-    .impact-text { color: #166534; font-size: 0.95rem; line-height: 1.4; }
+        .description { font-size: 1.05rem; color: #555; margin-bottom: 1.5rem; }
 
-    .links { margin-top: auto; padding-top: 1.5rem; }
-    .btn { 
-        display: inline-block; 
-        background: var(--accent); 
-        color: white !important; 
-        padding: 0.7rem 1.4rem; 
-        border-radius: 6px; 
-        text-decoration: none; 
-        margin-right: 10px;
-        font-size: 0.9rem;
-        font-weight: 600;
-    }
-    .btn-outline { background: transparent; color: var(--accent) !important; border: 2px solid var(--accent); }
-    .btn:hover { filter: brightness(1.1); }
+        .impact-box { 
+            background: #f0fdf4; 
+            border-left: 5px solid #22c55e; 
+            padding: 1.5rem; 
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .impact-box b { color: #166534; display: block; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem; }
+        .impact-text { color: #166534; font-size: 1rem; line-height: 1.5; margin: 0; }
 
-    /* Responsividade */
-    @media (max-width: 992px) {
-        .project { flex-direction: column; min-height: auto; }
-        .project-image { min-width: 100%; height: 300px; }
-        .project-image img { position: relative; }
-    }
-</style>
+        .links { margin-top: 2rem; display: flex; gap: 12px; }
+        .btn { 
+            display: inline-block; 
+            background: var(--accent); 
+            color: white !important; 
+            padding: 0.8rem 1.6rem; 
+            border-radius: 6px; 
+            text-decoration: none; 
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .btn-outline { background: transparent; color: var(--accent) !important; border: 2px solid var(--accent); }
+        .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        footer { text-align: center; padding: 4rem 1rem; background: var(--primary); color: white; margin-top: 4rem; }
+        footer a { color: var(--accent); text-decoration: none; font-weight: bold; }
+    </style>
 </head>
 <body>
 
 <header>
     <h1>Israel Buratto</h1>
     <p>Data Scientist & Operations Research Specialist</p>
-    <p style="font-size: 0.9rem; opacity: 0.8;">Transforming Industrial Complexity into Optimized Data Solutions</p>
+    <p style="font-size: 0.95rem; opacity: 0.8; max-width: 600px; margin: 10px auto;">End-to-end data solutions bridging the gap between industrial operations and high-level intelligence.</p>
 </header>
 
 <div class="container">
@@ -123,7 +115,9 @@
         </div>
         <div class="project-content">
             <h2>Retail Demand Forecasting & Elasticity</h2>
-            <p><strong>The Challenge:</strong> Predicting daily sales at the item-store level to optimize inventory in a production-ready environment using hybrid cloud architecture.</p>
+            <div class="challenge-box">
+                <strong>The Challenge:</strong> Predicting daily sales at the item-store level to optimize inventory in a production-ready environment using hybrid cloud architecture.
+            </div>
             
             <span class="section-title">Stack:</span>
             <div class="badge-container">
@@ -133,15 +127,16 @@
                 <img src="https://img.shields.io/badge/DuckDB-FFF000?style=flat&logo=duckdb&logoColor=black" class="badge">
             </div>
 
-            <p>Integrated an end-to-end pipeline with advanced feature engineering (Lags, Rolling Windows) and a Random Forest Regressor. Built for resilience with DuckDB for local processing.</p>
+            <p class="description">Developed an end-to-end pipeline with advanced feature engineering (Lags, Rolling Windows) and a log-transformed Random Forest Regressor. Built for resilience with DuckDB for local processing and automated BigQuery sync.</p>
             
             <div class="impact-box">
-                <b>Insight & Impact:</b> Achieved 22% MAPE and identified a "Regime Change" in Store 1 (Flagship), enabling specialized modeling for outlier locations.
+                <b>Insight & Impact:</b>
+                <p class="impact-text">Achieved 22% MAPE and identified a "Regime Change" in Flagship store outliers, enabling targeted modeling strategies that improved global accuracy.</p>
             </div>
 
             <div class="links">
                 <a href="https://lookerstudio.google.com/u/0/reporting/69758cba-ec2e-4f60-91fd-218979b431f7/page/V4CoF" class="btn" target="_blank">View Live Dashboard</a>
-                <a href="https://github.com/bttisrael/item-predictions" class="btn btn-outline" target="_blank">Documentation</a>
+                <a href="https://github.com/bttisrael/item-predictions" class="btn btn-outline" target="_blank">Technical Code</a>
             </div>
         </div>
     </div>
@@ -152,25 +147,28 @@
         </div>
         <div class="project-content">
             <h2>Prescriptive Supply Chain Optimizer</h2>
-            <p><strong>The Challenge:</strong> Eliminating detention costs and bottlenecks caused by fixed DC capacities and variable transit times (Lead Times).</p>
+            <div class="challenge-box">
+                <strong>The Challenge:</strong> Eliminating detention costs and bottlenecks caused by fixed DC capacities and variable transit times (Lead Times).
+            </div>
             
             <span class="section-title">Stack:</span>
             <div class="badge-container">
                 <img src="https://img.shields.io/badge/Gurobi-Optimization-red" class="badge">
                 <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
                 <img src="https://img.shields.io/badge/BigQuery-4285F4?style=flat&logo=google-cloud&logoColor=white" class="badge">
-                <img src="https://img.shields.io/badge/Mathematical_Modeling-blue" class="badge">
+                <img src="https://img.shields.io/badge/Math_Modeling-blue" class="badge">
             </div>
 
-            <p>Developed a MILP (Mixed-Integer Linear Programming) model that optimizes nationwide origin-destination flows by calculating dynamic ETAs across 5 Distribution Centers.</p>
+            <p class="description">Developed a Mixed-Integer Linear Programming (MILP) model that synchronizes nationwide freight flows by calculating dynamic ETAs across 5 Distribution Centers based on real-world constraints.</p>
             
             <div class="impact-box">
-                <b>Insight & Impact:</b> 100% elimination of detention costs in simulation, solving 4.5M decision variables in under 30 seconds.
+                <b>Insight & Impact:</b>
+                <p class="impact-text">100% elimination of detention costs in simulation. Optimized 4.5M decision variables and 14,000 constraints in under 30 seconds.</p>
             </div>
 
             <div class="links">
                 <a href="https://lookerstudio.google.com/u/0/reporting/e586e8a9-75b3-43b0-932c-94433e50a7cc/page/faOIF" class="btn" target="_blank">Live Dashboard</a>
-                <a href="https://github.com/bttisrael/logistics-network-solver" class="btn btn-outline" target="_blank">Technical Code</a>
+                <a href="https://github.com/bttisrael/logistics-network-solver" class="btn btn-outline" target="_blank">View Logic</a>
             </div>
         </div>
     </div>
@@ -181,25 +179,28 @@
         </div>
         <div class="project-content">
             <h2>Rossmann Drugstores Sales Forecasting</h2>
-            <p><strong>The Challenge:</strong> Automating 6-week sales projections for 1,115 stores to define the CFO's renovation budget.</p>
+            <div class="challenge-box">
+                <strong>The Challenge:</strong> Providing accurate 6-week sales projections for 1,115 stores to determine the CFO's budget for renovations.
+            </div>
             
             <span class="section-title">Stack:</span>
             <div class="badge-container">
                 <img src="https://img.shields.io/badge/XGBoost-Regressor-green" class="badge">
                 <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
                 <img src="https://img.shields.io/badge/Tableau-E97628?style=flat&logo=tableau&logoColor=white" class="badge">
-                <img src="https://img.shields.io/badge/Boruta-Feature_Selection-blue" class="badge">
+                <img src="https://img.shields.io/badge/CRISP--DM-Framework-blue" class="badge">
             </div>
 
-            <p>Applied the CRISP-DM framework and XGBoost to handle complex seasonality and competition effects. Delivered a drill-down visualization for financial planning.</p>
+            <p class="description">Utilized the Boruta algorithm for feature selection and XGBoost for modeling. Handles complex competition effects, school holidays, and store-specific seasonality.</p>
             
             <div class="impact-box">
-                <b>Insight & Impact:</b> Achieved 9% MAPE, providing high-precision "Best vs. Worst" financial scenarios for R$ 285M in predicted revenue.
+                <b>Insight & Impact:</b>
+                <p class="impact-text">Achieved 9% MAPE, enabling high-precision financial scenarios (Best vs. Worst case) for R$ 285M+ in predicted revenue.</p>
             </div>
 
             <div class="links">
                 <a href="https://public.tableau.com/app/profile/israel.a.o.buratto/viz/Rossmann-predict-sales/Painel1" class="btn" target="_blank">Tableau Panel</a>
-                <a href="https://github.com/bttisrael/rossmann-sales-prediction" class="btn btn-outline" target="_blank">Documentation</a>
+                <a href="https://github.com/bttisrael/rossmann-sales-prediction" class="btn btn-outline" target="_blank">Full Project</a>
             </div>
         </div>
     </div>
@@ -209,20 +210,24 @@
             <img src="https://github.com/user-attachments/assets/545b1fc9-eeb2-41c0-ae6e-4bc3c25d92da" alt="Retail ETL Engine">
         </div>
         <div class="project-content">
-            <h2>Retail ETL: PDF to Structured BI</h2>
-            <p><strong>The Challenge:</strong> Extracting granular sales data from legacy unstructured PDF reports for a family retail business.</p>
+            <h2>Retail ETL: PDF to Structured Insights</h2>
+            <div class="challenge-box">
+                <strong>The Challenge:</strong> Automating data extraction from unstructured legacy PDF reports to enable SKU-level performance tracking.
+            </div>
             
             <span class="section-title">Stack:</span>
             <div class="badge-container">
                 <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
                 <img src="https://img.shields.io/badge/Regex-Parsing-4285F4" class="badge">
+                <img src="https://img.shields.io/badge/Pandas-ETL-150458?style=flat&logo=pandas&logoColor=white" class="badge">
                 <img src="https://img.shields.io/badge/Looker_Studio-BI-blue" class="badge">
             </div>
 
-            <p>Created a Regex-based sanitization engine to parse inconsistent descriptions and categorize 11,000+ units into Families (Topwear, Bottomwear).</p>
+            <p class="description">Built a Regex-based sanitization engine to parse inconsistent text descriptions and categorize over 11,000 units sold into a relational database.</p>
             
             <div class="impact-box">
-                <b>Insight & Impact:</b> 95% automation of data prep. Implemented "Days Since Last Sale" metric to trigger re-engagement for top customers.
+                <b>Insight & Impact:</b>
+                <p class="impact-text">95% reduction in manual data entry. Implemented "Days Since Last Sale" metrics to trigger re-engagement for top-tier retail customers.</p>
             </div>
 
             <div class="links">
@@ -235,11 +240,9 @@
 </div>
 
 <footer>
-    <p>Let's build something efficient together.</p>
-    <p><a href="https://www.linkedin.com/in/israelburatto/" target="_blank">LinkedIn</a> | <a href="https://github.com/bttisrael" target="_blank">GitHub</a></p>
+    <p>Building high-impact data solutions for complex problems.</p>
+    <p>Connect with me: <a href="https://www.linkedin.com/in/israelburatto/" target="_blank">LinkedIn</a> | <a href="https://github.com/bttisrael" target="_blank">GitHub</a></p>
 </footer>
 
 </body>
 </html>
-
-
