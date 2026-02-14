@@ -4,103 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Israel Buratto - Data Analytics & Operations Research</title>
-    <style>
-        :root { 
-            --primary: #1a2a3a; 
-            --accent: #3498db; 
-            --text: #444; 
-            --bg: #f4f7f6;
-            --white: #ffffff;
-        }
-        
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background: var(--bg); }
-        
-        header { 
-            background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%); 
-            color: white; padding: 4rem 1rem; text-align: center; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
+<style>
+    :root { 
+        --primary: #1a2a3a; 
+        --accent: #3498db; 
+        --text: #444; 
+        --bg: #f4f7f6;
+        --white: #ffffff;
+    }
+    
+    body { font-family: 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background: var(--bg); }
+    
+    header { 
+        background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%); 
+        color: white; padding: 3rem 1rem; text-align: center; 
+    }
 
-        .container { max-width: 1100px; margin: auto; padding: 2rem; }
-        
-        /* Project Card Layout */
-        .project { 
-            display: flex; 
-            flex-wrap: wrap; 
-            background: var(--white); 
-            margin-bottom: 3rem; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-        .project:hover { transform: translateY(-5px); }
+    .container { max-width: 1200px; margin: auto; padding: 2rem; }
+    
+    .project { 
+        display: grid;
+        grid-template-columns: 450px 1fr; /* Fixa a largura da imagem e deixa o texto fluir */
+        gap: 0;
+        background: var(--white); 
+        margin-bottom: 3rem; 
+        border-radius: 12px; 
+        overflow: hidden; 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
 
-        /* Left Side: Image */
-        .project-image { 
-            flex: 1; 
-            min-width: 350px; 
-            max-width: 450px;
-            background: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .project-image img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-        }
+    /* Ajuste para a imagem não cortar */
+    .project-image { 
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: flex-start; /* Alinha ao topo para não cortar o título do dashboard */
+        background: #fff;
+    }
 
-        /* Right Side: Content */
-        .project-content { 
-            flex: 1.5; 
-            padding: 2rem; 
-            min-width: 300px; 
-        }
+    .project-image img { 
+        width: 100%;
+        height: auto; /* Mantém a proporção real da imagem */
+        display: block;
+        object-fit: contain; /* Garante que a imagem inteira apareça no espaço */
+    }
 
-        h2 { color: var(--primary); margin-top: 0; font-size: 1.6rem; border-bottom: 2px solid var(--accent); display: inline-block; margin-bottom: 1rem; }
-        
-        .section-title { font-weight: bold; color: var(--primary); display: block; margin-top: 1rem; }
-        
-        .badge-container { margin: 1rem 0; }
-        .badge { 
-            display: inline-block; 
-            margin-bottom: 5px;
-        }
+    .project-content { 
+        padding: 2rem; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 
-        .impact-box { 
-            background: #e8f6ef; 
-            border-left: 4px solid #27ae60; 
-            padding: 1rem; 
-            margin: 1.5rem 0;
-            font-size: 0.95rem;
-        }
-        .impact-box b { color: #27ae60; }
+    h2 { color: var(--primary); margin-top: 0; font-size: 1.5rem; border-bottom: 2px solid var(--accent); display: inline-block; margin-bottom: 1rem; }
+    
+    .section-title { font-weight: bold; color: var(--primary); display: block; margin-top: 0.5rem; }
+    
+    .badge-container { margin: 0.8rem 0; }
+    .badge { display: inline-block; margin-bottom: 5px; height: 20px; }
 
-        .links { margin-top: 1.5rem; }
-        .btn { 
-            display: inline-block; 
-            background: var(--accent); 
-            color: white !important; 
-            padding: 0.6rem 1.2rem; 
-            border-radius: 6px; 
-            text-decoration: none; 
-            margin-right: 10px;
-            font-size: 0.9rem;
-            transition: background 0.3s;
-        }
-        .btn-outline { background: transparent; color: var(--accent) !important; border: 1px solid var(--accent); }
-        .btn:hover { background: #2980b9; opacity: 0.9; }
+    .impact-box { 
+        background: #e8f6ef; 
+        border-left: 4px solid #27ae60; 
+        padding: 1rem; 
+        margin: 1rem 0;
+        font-size: 0.9rem;
+    }
+    .impact-box b { color: #27ae60; }
 
-        footer { text-align: center; padding: 3rem; background: var(--primary); color: white; margin-top: 4rem; }
-        footer a { color: var(--accent); }
+    .links { margin-top: 1rem; }
+    .btn { 
+        display: inline-block; 
+        background: var(--accent); 
+        color: white !important; 
+        padding: 0.5rem 1rem; 
+        border-radius: 4px; 
+        text-decoration: none; 
+        margin-right: 8px;
+        font-size: 0.85rem;
+    }
+    .btn-outline { background: transparent; color: var(--accent) !important; border: 1px solid var(--accent); }
 
-        @media (max-width: 768px) {
-            .project { flex-direction: column; }
-            .project-image { max-width: 100%; min-width: 100%; height: 250px; }
-        }
-    </style>
+    footer { text-align: center; padding: 3rem; background: var(--primary); color: white; }
+
+    /* Responsividade para telas menores */
+    @media (max-width: 900px) {
+        .project { grid-template-columns: 1fr; }
+        .project-image { max-width: 100%; }
+    }
+</style>
 </head>
 <body>
 
@@ -236,3 +228,4 @@
 
 </body>
 </html>
+
