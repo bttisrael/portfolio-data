@@ -16,7 +16,6 @@
         
         body { font-family: 'Inter', sans-serif; line-height: 1.5; color: var(--text); margin: 0; padding: 0; background-color: var(--bg); }
         
-        /* Header Split Estratégico */
         header { 
             background: var(--primary); 
             color: white; 
@@ -45,7 +44,6 @@
         .header-right li { margin-bottom: 6px; }
         .header-right b { color: var(--accent); }
 
-        /* Grid de Projetos */
         .container { max-width: 1100px; margin: auto; padding: 3rem 2rem; }
         
         .section-intro { text-align: center; margin-bottom: 3rem; }
@@ -53,7 +51,7 @@
 
         .projects-grid { 
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* DOIS POR LINHA */
+            grid-template-columns: repeat(2, 1fr); 
             gap: 2rem;
         }
 
@@ -78,7 +76,7 @@
         .challenge { font-size: 0.85rem; color: #64748b; margin-bottom: 1rem; flex-grow: 1; }
         
         .badge-container { margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 4px; }
-        .badge { height: 18px; }
+        .badge { height: 20px; }
 
         .impact-minibox { 
             background: #f0fdf4; 
@@ -105,7 +103,6 @@
 
         footer { text-align: center; padding: 3rem; font-size: 0.8rem; opacity: 0.6; }
 
-        /* Responsividade para Celular (vira uma coluna) */
         @media (max-width: 800px) {
             .header-container, .projects-grid { grid-template-columns: 1fr; }
             .project-image { height: 180px; }
@@ -147,7 +144,9 @@
                 <p class="challenge">Predicting daily sales at item-store level to optimize inventory using hybrid cloud/local SQL.</p>
                 <div class="badge-container">
                     <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
+                    <img src="https://img.shields.io/badge/Scikit_Learn-F7931E?style=flat&logo=scikit-learn&logoColor=white" class="badge">
                     <img src="https://img.shields.io/badge/BigQuery-4285F4?style=flat&logo=google-cloud&logoColor=white" class="badge">
+                    <img src="https://img.shields.io/badge/DuckDB-FFF000?style=flat&logo=duckdb&logoColor=black" class="badge">
                 </div>
                 <div class="impact-minibox">
                     <b>Impact</b>
@@ -169,7 +168,9 @@
                 <p class="challenge">Synchronizing DC capacity with variable transit times to eliminate detention costs via MILP.</p>
                 <div class="badge-container">
                     <img src="https://img.shields.io/badge/Gurobi-red" class="badge">
-                    <img src="https://img.shields.io/badge/BigQuery-4285F4" class="badge">
+                    <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
+                    <img src="https://img.shields.io/badge/BigQuery-4285F4?style=flat&logo=google-cloud&logoColor=white" class="badge">
+                    <img src="https://img.shields.io/badge/Math_Modeling-blue" class="badge">
                 </div>
                 <div class="impact-minibox">
                     <b>Impact</b>
@@ -188,10 +189,12 @@
             </div>
             <div class="project-content">
                 <h3>Rossmann Sales</h3>
-                <p class="challenge">Providing 6-week revenue projections for 1,115 stores to guide CFO's renovation budget.</p>
+                <p class="challenge">6-week revenue projections for 1,115 stores to guide CFO's renovation budget.</p>
                 <div class="badge-container">
                     <img src="https://img.shields.io/badge/XGBoost-green" class="badge">
-                    <img src="https://img.shields.io/badge/Tableau-E97628" class="badge">
+                    <img src="https://img.shields.io/badge/Boruta-blue" class="badge">
+                    <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
+                    <img src="https://img.shields.io/badge/Tableau-E97628?style=flat&logo=tableau&logoColor=white" class="badge">
                 </div>
                 <div class="impact-minibox">
                     <b>Impact</b>
@@ -212,8 +215,10 @@
                 <h3>Retail ETL: PDF to BI</h3>
                 <p class="challenge">Automating SKU-level extraction from legacy unstructured PDF reports using Python & Regex.</p>
                 <div class="badge-container">
-                    <img src="https://img.shields.io/badge/Python-3776AB" class="badge">
-                    <img src="https://img.shields.io/badge/Regex-Parsing-blue" class="badge">
+                    <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
+                    <img src="https://img.shields.io/badge/Regex-Parsing-4285F4" class="badge">
+                    <img src="https://img.shields.io/badge/Pandas-ETL-150458?style=flat&logo=pandas&logoColor=white" class="badge">
+                    <img src="https://img.shields.io/badge/Looker_Studio-BI-blue" class="badge">
                 </div>
                 <div class="impact-minibox">
                     <b>Impact</b>
@@ -234,8 +239,9 @@
                 <h3>Odoo Transformation</h3>
                 <p class="challenge">Deploying an integrated E-commerce and ERP strategy for multi-channel retail.</p>
                 <div class="badge-container">
-                    <img src="https://img.shields.io/badge/Odoo-ERP-714B67" class="badge">
-                    <img src="https://img.shields.io/badge/Conversion-Tracking-orange" class="badge">
+                    <img src="https://img.shields.io/badge/Odoo-ERP-714B67?style=flat&logo=odoo&logoColor=white" class="badge">
+                    <img src="https://img.shields.io/badge/Web_Analytics-blue" class="badge">
+                    <img src="https://img.shields.io/badge/Inventory-Management-orange" class="badge">
                 </div>
                 <div class="impact-minibox">
                     <b>Impact</b>
