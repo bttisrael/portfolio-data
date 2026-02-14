@@ -3,302 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Israel Buratto - Data Science & Operations Research</title>
+    <title>Israel Buratto | Data Science & Operations Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --primary: #1a2a3a; 
-            --accent: #3498db; 
-            --text: #444; 
-            --bg: #f4f7f6;
+            --primary: #0f172a; 
+            --accent: #3b82f6; 
+            --text: #334155; 
+            --bg: #f8fafc;
             --white: #ffffff;
-            --border: #e1e8ed;
-            --success: #22c55e;
+            --success: #10b981;
         }
         
-        body { font-family: 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background: var(--bg); }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            color: var(--text); 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg);
+            background-image: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.05) 0, transparent 50%), 
+                              radial-gradient(at 50% 0%, rgba(15, 23, 42, 0.03) 0, transparent 50%);
+        }
         
-        /* Split Header Layout */
+        /* Header Estilo Carrd */
         header { 
-            background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%); 
-            color: white; 
-            padding: 3rem 2rem;
-        }
-        
-        .header-container {
-            max-width: 1200px;
+            padding: 5rem 2rem 3rem;
+            max-width: 900px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
+            text-align: left;
         }
 
-        .header-left { flex: 1; }
-        .header-left h1 { margin: 0; font-size: 2.5rem; letter-spacing: -1px; }
-        .header-left p { font-size: 1.1rem; color: var(--accent); margin: 5px 0 0 0; font-weight: 600; }
+        .header-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .header-left h1 { 
+            margin: 0; 
+            font-size: 3rem; 
+            font-weight: 700; 
+            color: var(--primary); 
+            letter-spacing: -1.5px;
+            line-height: 1;
+        }
+        .header-left p { 
+            font-size: 1.1rem; 
+            color: var(--accent); 
+            margin: 15px 0; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         .header-right { 
-            flex: 1.5; 
-            background: rgba(255, 255, 255, 0.1); 
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
             padding: 1.5rem; 
-            border-radius: 8px;
-            border-left: 4px solid var(--accent);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
-        .header-right h3 { margin: 0 0 10px 0; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #cbd5e1; }
-        .header-right ul { margin: 0; padding: 0; list-style: none; font-size: 0.95rem; }
-        .header-right li { margin-bottom: 8px; line-height: 1.4; }
-        .header-right li b { color: var(--accent); }
+        .header-right h3 { margin: 0 0 12px 0; font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; }
+        .header-right ul { margin: 0; padding: 0; list-style: none; font-size: 0.9rem; }
+        .header-right li { margin-bottom: 12px; color: var(--text); border-left: 3px solid var(--accent); padding-left: 12px; }
+        .header-right li b { color: var(--primary); }
 
-        .portfolio-title { 
-            max-width: 1200px; 
-            margin: 3rem auto 1rem auto; 
-            padding: 0 2rem;
-            text-align: center;
-        }
-        .portfolio-title h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; }
-        .portfolio-title p { color: #666; font-style: italic; font-size: 1.1rem; }
-
-        .container { max-width: 1000px; margin: auto; padding: 0 2rem 4rem 2rem; }
+        /* Portfolio Section */
+        .container { max-width: 800px; margin: auto; padding: 2rem; }
         
-        /* Vertical Stacked Card */
+        .section-intro { text-align: center; margin-bottom: 4rem; margin-top: 2rem; }
+        .section-intro h2 { font-size: 2.2rem; font-weight: 700; color: var(--primary); letter-spacing: -1px; }
+        .section-intro p { opacity: 0.6; font-style: italic; }
+
+        /* Card Estilo Carrd: Imagem em cima, conteúdo embaixo */
         .project { 
             background: var(--white); 
-            margin-bottom: 5rem; 
-            border-radius: 12px; 
+            margin-bottom: 4rem; 
+            border-radius: 20px; 
             overflow: hidden; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
         }
+        .project:hover { transform: translateY(-8px); }
 
-        .project-image { width: 100%; border-bottom: 1px solid var(--border); overflow: hidden; }
-        .project-image img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
-        .project:hover .project-image img { transform: scale(1.02); }
+        .project-image { width: 100%; border-bottom: 1px solid #f1f5f9; }
+        .project-image img { width: 100%; height: auto; display: block; }
 
         .project-content { padding: 2.5rem; }
 
-        h2.proj-title { color: var(--primary); margin-top: 0; font-size: 1.8rem; margin-bottom: 1rem; }
+        .project-content h2 { margin: 0 0 1rem; font-size: 1.7rem; color: var(--primary); letter-spacing: -0.5px; }
         
-        .challenge-box { margin-bottom: 1.5rem; font-size: 1rem; }
-        .challenge-box b { color: var(--primary); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
-        
-        .section-title { font-weight: bold; color: var(--primary); display: block; margin-top: 1.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
-        
-        .badge-container { margin: 0.5rem 0 1.5rem 0; display: flex; flex-wrap: wrap; gap: 8px; }
-        .badge { height: 22px; }
+        .challenge-box { color: #64748b; font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .challenge-box b { color: var(--primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .badge-container { margin: 1.5rem 0; display: flex; flex-wrap: wrap; gap: 8px; }
+        .badge { height: 20px; opacity: 0.9; }
 
         .impact-box { 
             background: #f0fdf4; 
-            border-left: 5px solid var(--success); 
             padding: 1.5rem; 
+            border-radius: 12px; 
             margin: 1.5rem 0;
-            border-radius: 0 8px 8px 0;
         }
-        .impact-box b { color: #166534; display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 0.8rem; }
-        .impact-text { color: #166534; font-size: 1rem; margin: 0; }
+        .impact-box b { color: #15803d; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px; }
+        .impact-text { color: #166534; font-size: 1rem; margin: 0; font-weight: 500; }
 
-        .links { margin-top: 2rem; display: flex; gap: 12px; }
+        .links { display: flex; gap: 1rem; margin-top: 2rem; }
         .btn { 
-            display: inline-block; 
-            background: var(--accent); 
-            color: white !important; 
-            padding: 0.8rem 1.6rem; 
-            border-radius: 6px; 
+            padding: 0.8rem 1.5rem; 
+            border-radius: 10px; 
             text-decoration: none; 
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s;
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            transition: all 0.2s ease;
         }
-        .btn-outline { background: transparent; color: var(--accent) !important; border: 2px solid var(--accent); }
-        .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        .btn-primary { background: var(--primary); color: white !important; }
+        .btn-secondary { background: transparent; color: var(--primary) !important; border: 1.5px solid #e2e8f0; }
+        .btn:hover { opacity: 0.8; }
 
-        footer { text-align: center; padding: 4rem 1rem; background: var(--primary); color: white; }
-        footer a { color: var(--accent); text-decoration: none; }
+        footer { text-align: center; padding: 5rem 2rem; opacity: 0.5; font-size: 0.85rem; }
+        footer a { color: var(--primary); text-decoration: none; font-weight: 700; }
 
-        @media (max-width: 850px) {
-            .header-container { flex-direction: column; text-align: center; }
-            .header-right { border-left: none; border-top: 4px solid var(--accent); }
-            .project-image { height: auto; }
+        @media (max-width: 768px) {
+            .header-grid { grid-template-columns: 1fr; gap: 2rem; }
+            header { text-align: center; }
+            .header-right { text-align: left; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="header-container">
+    <div class="header-grid">
         <div class="header-left">
             <h1>Israel Buratto</h1>
-            <p>Data Scientist & Data Analyst</p>
+            <p>Data Science & Optimization</p>
         </div>
         <div class="header-right">
             <h3>Professional Key Achievements</h3>
             <ul>
-                <li>• <b>Grupo Boticário:</b> Developed custom tools identifying over <b>BRL 11M</b> in cost-saving opportunities and automated manual processes, saving 1000+ hours annually.</li>
-                <li>• <b>Grupo Pluma:</b> Directly contributed to a <b>BRL 3M+ turnaround</b> by optimizing production mix and profitability models in key manufacturing units.</li>
+                <li>• <b>Grupo Boticário:</b> Identified <b>BRL 11M</b> in savings and automated 1,000+ hours of manual labor annually.</li>
+                <li>• <b>Grupo Pluma:</b> Led a <b>BRL 3M+ turnaround</b> through profitability modeling and production mix optimization.</li>
             </ul>
         </div>
     </div>
 </header>
 
-<div class="portfolio-title">
-    <h2>Personal Portfolio</h2>
-    <p>Detailed data pipelines, predictive models, and optimization solvers.</p>
-</div>
-
 <div class="container">
+    <div class="section-intro">
+        <h2>Personal Portfolio</h2>
+        <p>Technical projects developed to solve complex simulations and operational challenges.</p>
+    </div>
 
     <div class="project">
         <div class="project-image">
-            <img src="https://github.com/user-attachments/assets/cfa81f7f-0883-415b-83bb-55576696407a" alt="Item Demand Forecasting">
+            <img src="https://github.com/user-attachments/assets/cfa81f7f-0883-415b-83bb-55576696407a" alt="Dashboard">
         </div>
         <div class="project-content">
-            <h2 class="proj-title">Retail Demand Forecasting & Elasticity</h2>
+            <h2>Retail Demand Forecasting</h2>
             <div class="challenge-box">
-                <b>The Challenge:</b> Predicting daily sales at the item-store level to optimize inventory in a production-ready environment using hybrid cloud architecture.
+                <b>The Challenge</b><br>
+                Predicting daily sales at item-store level to optimize inventory using hybrid cloud/local SQL execution.
             </div>
             
-            <span class="section-title">Stack:</span>
             <div class="badge-container">
                 <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
-                <img src="https://img.shields.io/badge/Scikit_Learn-F7931E?style=flat&logo=scikit-learn&logoColor=white" class="badge">
                 <img src="https://img.shields.io/badge/BigQuery-4285F4?style=flat&logo=google-cloud&logoColor=white" class="badge">
-                <img src="https://img.shields.io/badge/DuckDB-FFF000?style=flat&logo=duckdb&logoColor=black" class="badge">
+                <img src="https://img.shields.io/badge/Scikit_Learn-F7931E?style=flat&logo=scikit-learn&logoColor=white" class="badge">
             </div>
 
-            <p>End-to-end pipeline with advanced feature engineering (Lags, Rolling Windows) and a log-transformed Random Forest Regressor. Built for resilience with DuckDB local processing.</p>
-            
             <div class="impact-box">
-                <b>Insight & Impact:</b>
-                <p class="impact-text">Achieved 22% MAPE and identified a "Regime Change" in Flagship store outliers, enabling targeted modeling strategies.</p>
+                <b>Impact</b>
+                <p class="impact-text">Achieved 22% MAPE and identified structural breaks in flagship store outliers.</p>
             </div>
 
             <div class="links">
-                <a href="https://lookerstudio.google.com/u/0/reporting/69758cba-ec2e-4f60-91fd-218979b431f7/page/V4CoF" class="btn" target="_blank">View Live Dashboard</a>
-                <a href="https://github.com/bttisrael/item-predictions" class="btn btn-outline" target="_blank">Technical Code</a>
+                <a href="https://lookerstudio.google.com/u/0/reporting/69758cba-ec2e-4f60-91fd-218979b431f7/page/V4CoF" class="btn btn-primary" target="_blank">View Dashboard</a>
+                <a href="https://github.com/bttisrael/item-predictions" class="btn btn-secondary" target="_blank">Technical Code</a>
             </div>
         </div>
     </div>
 
     <div class="project">
         <div class="project-image">
-            <img src="https://github.com/user-attachments/assets/a653f5d1-6376-48f7-9afa-3337cdedb52d" alt="Logistics Network Solver">
+            <img src="https://github.com/user-attachments/assets/a653f5d1-6376-48f7-9afa-3337cdedb52d" alt="Logistics Solver">
         </div>
         <div class="project-content">
-            <h2 class="proj-title">Prescriptive Supply Chain Optimizer</h2>
+            <h2>Supply Chain Optimizer</h2>
             <div class="challenge-box">
-                <b>The Challenge:</b> Eliminating detention costs and bottlenecks caused by fixed DC capacities and variable transit times (Lead Times).
+                <b>The Challenge</b><br>
+                Eliminating detention costs by synchronizing DC capacity with variable transit times (Lead Times).
             </div>
             
-            <span class="section-title">Stack:</span>
             <div class="badge-container">
                 <img src="https://img.shields.io/badge/Gurobi-Optimization-red" class="badge">
-                <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
                 <img src="https://img.shields.io/badge/BigQuery-4285F4?style=flat&logo=google-cloud&logoColor=white" class="badge">
                 <img src="https://img.shields.io/badge/Math_Modeling-blue" class="badge">
             </div>
 
-            <p>Developed a MILP model that synchronizes nationwide freight flows by calculating dynamic ETAs across 5 Distribution Centers based on real-world constraints.</p>
-            
             <div class="impact-box">
-                <b>Insight & Impact:</b>
-                <p class="impact-text">100% elimination of detention costs in simulation. Optimized 4.5M decision variables and 14,000 constraints in under 30 seconds.</p>
+                <b>Impact</b>
+                <p class="impact-text">100% elimination of detention costs in simulation. Solved 4.5M variables in under 30s.</p>
             </div>
 
             <div class="links">
-                <a href="https://lookerstudio.google.com/u/0/reporting/e586e8a9-75b3-43b0-932c-94433e50a7cc/page/faOIF" class="btn" target="_blank">Live Dashboard</a>
-                <a href="https://github.com/bttisrael/logistics-network-solver" class="btn btn-outline" target="_blank">View Logic</a>
+                <a href="https://lookerstudio.google.com/u/0/reporting/e586e8a9-75b3-43b0-932c-94433e50a7cc/page/faOIF" class="btn btn-primary" target="_blank">View Dashboard</a>
+                <a href="https://github.com/bttisrael/logistics-network-solver" class="btn btn-secondary" target="_blank">View Logic</a>
             </div>
         </div>
     </div>
 
     <div class="project">
         <div class="project-image">
-            <img src="https://github.com/user-attachments/assets/7f43d130-4b61-42d8-b9f2-20fd17aaef5e" alt="Rossmann Sales Forecasting">
+            <img src="https://github.com/user-attachments/assets/7f43d130-4b61-42d8-b9f2-20fd17aaef5e" alt="Rossmann">
         </div>
         <div class="project-content">
-            <h2 class="proj-title">Rossmann Drugstores Sales Forecasting</h2>
+            <h2>Rossmann Sales Forecasting</h2>
             <div class="challenge-box">
-                <b>The Challenge:</b> Providing accurate 6-week sales projections for 1,115 stores to determine the CFO's budget for renovations.
+                <b>The Challenge</b><br>
+                Providing 6-week revenue projections for 1,115 stores to guide CFO's renovation budget.
             </div>
             
-            <span class="section-title">Stack:</span>
             <div class="badge-container">
                 <img src="https://img.shields.io/badge/XGBoost-Regressor-green" class="badge">
-                <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
                 <img src="https://img.shields.io/badge/Tableau-E97628?style=flat&logo=tableau&logoColor=white" class="badge">
                 <img src="https://img.shields.io/badge/CRISP--DM-Methodology-blue" class="badge">
             </div>
 
-            <p>Applied the Boruta algorithm for feature selection and XGBoost for modeling. Handles complex competition effects, school holidays, and store-specific seasonality.</p>
-            
             <div class="impact-box">
-                <b>Insight & Impact:</b>
-                <p class="impact-text">Achieved 9% MAPE, providing high-precision "Best vs. Worst" financial scenarios for R$ 285M+ in predicted revenue.</p>
+                <b>Impact</b>
+                <p class="impact-text">9% MAPE achieved, allowing precise financial scenarios for BRL 285M+ in revenue.</p>
             </div>
 
             <div class="links">
-                <a href="https://public.tableau.com/app/profile/israel.a.o.buratto/viz/Rossmann-predict-sales/Painel1?publish=yes" class="btn" target="_blank">Tableau Dashboard</a>
-                <a href="https://github.com/bttisrael/rossmann-sales-prediction" class="btn btn-outline" target="_blank">Documentation</a>
+                <a href="https://public.tableau.com/app/profile/israel.a.o.buratto/viz/Rossmann-predict-sales/Painel1?publish=yes" class="btn btn-primary" target="_blank">Tableau Panel</a>
+                <a href="https://github.com/bttisrael/rossmann-sales-prediction" class="btn btn-secondary" target="_blank">Documentation</a>
             </div>
         </div>
     </div>
 
     <div class="project">
         <div class="project-image">
-            <img src="https://github.com/user-attachments/assets/545b1fc9-eeb2-41c0-ae6e-4bc3c25d92da" alt="Ophyum ETL">
+            <img src="https://github.com/user-attachments/assets/545b1fc9-eeb2-41c0-ae6e-4bc3c25d92da" alt="ETL">
         </div>
         <div class="project-content">
-            <h2 class="proj-title">Retail ETL: PDF to Structured BI</h2>
+            <h2>Retail ETL: PDF to BI</h2>
             <div class="challenge-box">
-                <b>The Challenge:</b> Transitioning a family retail business into a data-driven operation by automating extraction from legacy PDF reports.
+                <b>The Challenge</b><br>
+                Automating SKU-level extraction from legacy unstructured PDF reports using Regex.
             </div>
             
-            <span class="section-title">Stack:</span>
             <div class="badge-container">
                 <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
                 <img src="https://img.shields.io/badge/Regex-Parsing-4285F4" class="badge">
                 <img src="https://img.shields.io/badge/Looker_Studio-BI-blue" class="badge">
             </div>
 
-            <p>Developed an ETL engine using Regex patterns to sanitize descriptions and categorize 11,000+ units into a clean database for performance tracking.</p>
-            
             <div class="impact-box">
-                <b>Insight & Impact:</b>
-                <p class="impact-text">95% reduction in data prep time. Implemented "Days Since Last Sale" metrics to trigger targeted customer re-engagement.</p>
+                <b>Impact</b>
+                <p class="impact-text">95% reduction in data prep time. Implemented retention metrics for top-tier customers.</p>
             </div>
 
             <div class="links">
-                <a href="https://lookerstudio.google.com/u/0/reporting/d19b9fa2-7e77-42c3-a9c7-2c59cee2fc7e/page/uhojF" class="btn" target="_blank">View Dashboard</a>
-                <a href="https://github.com/bttisrael/sales_ophyum_etl_dashboard" class="btn btn-outline" target="_blank">ETL Logic</a>
+                <a href="https://lookerstudio.google.com/u/0/reporting/d19b9fa2-7e77-42c3-a9c7-2c59cee2fc7e/page/uhojF" class="btn btn-primary" target="_blank">View Dashboard</a>
+                <a href="https://github.com/bttisrael/sales_ophyum_etl_dashboard" class="btn btn-secondary" target="_blank">ETL Code</a>
             </div>
         </div>
     </div>
 
     <div class="project">
         <div class="project-image">
-            <img src="https://github.com/user-attachments/assets/545b1fc9-eeb2-41c0-ae6e-4bc3c25d92da" style="filter: grayscale(100%); opacity: 0.5;" alt="Odoo E-commerce">
+            <img src="https://github.com/user-attachments/assets/545b1fc9-eeb2-41c0-ae6e-4bc3c25d92da" style="opacity: 0.4;" alt="Odoo">
         </div>
         <div class="project-content">
-            <h2 class="proj-title">E-commerce Digital Transformation</h2>
+            <h2>Digital Transformation: Odoo</h2>
             <div class="challenge-box">
-                <b>The Challenge:</b> Building the first digital sales channel for a retail brand with integrated inventory and behavioral tracking.
+                <b>The Challenge</b><br>
+                Deploying an integrated E-commerce and ERP strategy for a multi-channel retail brand.
             </div>
             
-            <span class="section-title">Stack:</span>
             <div class="badge-container">
                 <img src="https://img.shields.io/badge/Odoo-ERP-714B67?style=flat&logo=odoo&logoColor=white" class="badge">
-                <img src="https://img.shields.io/badge/Web_Analytics-blue" class="badge">
-                <img src="https://img.shields.io/badge/Inventory_Management-orange" class="badge">
+                <img src="https://img.shields.io/badge/Inventory-Management-orange" class="badge">
             </div>
 
-            <p>Leading the digital strategy to align seasonal sales data with the online shopping experience, focusing on UX and conversion funnel optimization.</p>
-            
             <div class="impact-box">
-                <b>Insight & Impact:</b>
-                <p class="impact-text">Deployed conversion funnels and behavioral tracking to optimize the connection between physical brand identity and consumer behavior.</p>
+                <b>Impact</b>
+                <p class="impact-text">Full funnel conversion tracking and behavioral analysis for better demand alignment.</p>
             </div>
 
             <div class="links">
-                <a href="https://ophyum-modas.odoo.com/" class="btn" target="_blank">Visit Site</a>
+                <a href="https://ophyum-modas.odoo.com/" class="btn btn-primary" target="_blank">Visit Site</a>
             </div>
         </div>
     </div>
@@ -306,11 +305,8 @@
 </div>
 
 <footer>
-    <p>Let's improve your business.</p>
-    <p><a href="https://www.linkedin.com/in/israelburatto/" target="_blank">LinkedIn</a> | <a href="https://github.com/bttisrael" target="_blank">GitHub</a></p>
+    <p>© 2026 Israel Buratto. Connect with me on <a href="https://www.linkedin.com/in/israelburatto/" target="_blank">LinkedIn</a>.</p>
 </footer>
 
 </body>
 </html>
-
-
