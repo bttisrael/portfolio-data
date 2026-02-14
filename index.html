@@ -55,23 +55,24 @@
             padding: 0 2rem;
             text-align: center;
         }
-        .portfolio-title h2 { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
-        .portfolio-title p { color: #666; font-style: italic; }
+        .portfolio-title h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; }
+        .portfolio-title p { color: #666; font-style: italic; font-size: 1.1rem; }
 
         .container { max-width: 1000px; margin: auto; padding: 0 2rem 4rem 2rem; }
         
         /* Vertical Stacked Card */
         .project { 
             background: var(--white); 
-            margin-bottom: 4rem; 
+            margin-bottom: 5rem; 
             border-radius: 12px; 
             overflow: hidden; 
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             border: 1px solid var(--border);
         }
 
-        .project-image { width: 100%; border-bottom: 1px solid var(--border); }
-        .project-image img { width: 100%; height: auto; display: block; }
+        .project-image { width: 100%; border-bottom: 1px solid var(--border); overflow: hidden; }
+        .project-image img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+        .project:hover .project-image img { transform: scale(1.02); }
 
         .project-content { padding: 2.5rem; }
 
@@ -116,6 +117,7 @@
         @media (max-width: 850px) {
             .header-container { flex-direction: column; text-align: center; }
             .header-right { border-left: none; border-top: 4px solid var(--accent); }
+            .project-image { height: auto; }
         }
     </style>
 </head>
@@ -139,7 +141,7 @@
 
 <div class="portfolio-title">
     <h2>Personal Portfolio</h2>
-    <p>Technical projects and simulations illustrating methodologies and end-to-end data pipelines.</p>
+    <p>Detailed data pipelines, predictive models, and optimization solvers.</p>
 </div>
 
 <div class="container">
@@ -162,7 +164,7 @@
                 <img src="https://img.shields.io/badge/DuckDB-FFF000?style=flat&logo=duckdb&logoColor=black" class="badge">
             </div>
 
-            <p>End-to-end pipeline with advanced feature engineering (Lags, Rolling Windows) and a Random Forest Regressor. Built for resilience with DuckDB local processing.</p>
+            <p>End-to-end pipeline with advanced feature engineering (Lags, Rolling Windows) and a log-transformed Random Forest Regressor. Built for resilience with DuckDB local processing.</p>
             
             <div class="impact-box">
                 <b>Insight & Impact:</b>
@@ -171,7 +173,7 @@
 
             <div class="links">
                 <a href="https://lookerstudio.google.com/u/0/reporting/69758cba-ec2e-4f60-91fd-218979b431f7/page/V4CoF" class="btn" target="_blank">View Live Dashboard</a>
-                <a href="https://github.com/bttisrael/item-predictions" class="btn btn-outline" target="_blank">Technical Documentation</a>
+                <a href="https://github.com/bttisrael/item-predictions" class="btn btn-outline" target="_blank">Technical Code</a>
             </div>
         </div>
     </div>
@@ -203,7 +205,100 @@
 
             <div class="links">
                 <a href="https://lookerstudio.google.com/u/0/reporting/e586e8a9-75b3-43b0-932c-94433e50a7cc/page/faOIF" class="btn" target="_blank">Live Dashboard</a>
-                <a href="https://github.com/bttisrael/logistics-network-solver" class="btn btn-outline" target="_blank">Technical Code</a>
+                <a href="https://github.com/bttisrael/logistics-network-solver" class="btn btn-outline" target="_blank">View Logic</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="project">
+        <div class="project-image">
+            <img src="https://github.com/user-attachments/assets/7f43d130-4b61-42d8-b9f2-20fd17aaef5e" alt="Rossmann Sales Forecasting">
+        </div>
+        <div class="project-content">
+            <h2 class="proj-title">Rossmann Drugstores Sales Forecasting</h2>
+            <div class="challenge-box">
+                <b>The Challenge:</b> Providing accurate 6-week sales projections for 1,115 stores to determine the CFO's budget for renovations.
+            </div>
+            
+            <span class="section-title">Stack:</span>
+            <div class="badge-container">
+                <img src="https://img.shields.io/badge/XGBoost-Regressor-green" class="badge">
+                <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
+                <img src="https://img.shields.io/badge/Tableau-E97628?style=flat&logo=tableau&logoColor=white" class="badge">
+                <img src="https://img.shields.io/badge/CRISP--DM-Methodology-blue" class="badge">
+            </div>
+
+            <p>Applied the Boruta algorithm for feature selection and XGBoost for modeling. Handles complex competition effects, school holidays, and store-specific seasonality.</p>
+            
+            <div class="impact-box">
+                <b>Insight & Impact:</b>
+                <p class="impact-text">Achieved 9% MAPE, providing high-precision "Best vs. Worst" financial scenarios for R$ 285M+ in predicted revenue.</p>
+            </div>
+
+            <div class="links">
+                <a href="https://public.tableau.com/app/profile/israel.a.o.buratto/viz/Rossmann-predict-sales/Painel1?publish=yes" class="btn" target="_blank">Tableau Dashboard</a>
+                <a href="https://github.com/bttisrael/rossmann-sales-prediction" class="btn btn-outline" target="_blank">Documentation</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="project">
+        <div class="project-image">
+            <img src="https://github.com/user-attachments/assets/545b1fc9-eeb2-41c0-ae6e-4bc3c25d92da" alt="Ophyum ETL">
+        </div>
+        <div class="project-content">
+            <h2 class="proj-title">Retail ETL: PDF to Structured BI</h2>
+            <div class="challenge-box">
+                <b>The Challenge:</b> Transitioning a family retail business into a data-driven operation by automating extraction from legacy PDF reports.
+            </div>
+            
+            <span class="section-title">Stack:</span>
+            <div class="badge-container">
+                <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
+                <img src="https://img.shields.io/badge/Regex-Parsing-4285F4" class="badge">
+                <img src="https://img.shields.io/badge/Looker_Studio-BI-blue" class="badge">
+            </div>
+
+            <p>Developed an ETL engine using Regex patterns to sanitize descriptions and categorize 11,000+ units into a clean database for performance tracking.</p>
+            
+            <div class="impact-box">
+                <b>Insight & Impact:</b>
+                <p class="impact-text">95% reduction in data prep time. Implemented "Days Since Last Sale" metrics to trigger targeted customer re-engagement.</p>
+            </div>
+
+            <div class="links">
+                <a href="https://lookerstudio.google.com/u/0/reporting/d19b9fa2-7e77-42c3-a9c7-2c59cee2fc7e/page/uhojF" class="btn" target="_blank">View Dashboard</a>
+                <a href="https://github.com/bttisrael/sales_ophyum_etl_dashboard" class="btn btn-outline" target="_blank">ETL Logic</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="project">
+        <div class="project-image">
+            <img src="https://github.com/user-attachments/assets/545b1fc9-eeb2-41c0-ae6e-4bc3c25d92da" style="filter: grayscale(100%); opacity: 0.5;" alt="Odoo E-commerce">
+        </div>
+        <div class="project-content">
+            <h2 class="proj-title">E-commerce Digital Transformation</h2>
+            <div class="challenge-box">
+                <b>The Challenge:</b> Building the first digital sales channel for a retail brand with integrated inventory and behavioral tracking.
+            </div>
+            
+            <span class="section-title">Stack:</span>
+            <div class="badge-container">
+                <img src="https://img.shields.io/badge/Odoo-ERP-714B67?style=flat&logo=odoo&logoColor=white" class="badge">
+                <img src="https://img.shields.io/badge/Web_Analytics-blue" class="badge">
+                <img src="https://img.shields.io/badge/Inventory_Management-orange" class="badge">
+            </div>
+
+            <p>Leading the digital strategy to align seasonal sales data with the online shopping experience, focusing on UX and conversion funnel optimization.</p>
+            
+            <div class="impact-box">
+                <b>Insight & Impact:</b>
+                <p class="impact-text">Deployed conversion funnels and behavioral tracking to optimize the connection between physical brand identity and consumer behavior.</p>
+            </div>
+
+            <div class="links">
+                <a href="https://ophyum-modas.odoo.com/" class="btn" target="_blank">Visit Site</a>
             </div>
         </div>
     </div>
@@ -211,7 +306,8 @@
 </div>
 
 <footer>
-    <p>Building high-impact data solutions. Connect on <a href="https://www.linkedin.com/in/israelburatto/" target="_blank">LinkedIn</a></p>
+    <p>Let's build something efficient together.</p>
+    <p><a href="https://www.linkedin.com/in/israelburatto/" target="_blank">LinkedIn</a> | <a href="https://github.com/bttisrael" target="_blank">GitHub</a></p>
 </footer>
 
 </body>
