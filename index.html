@@ -3,106 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Data Analytics & Operations Research </title>
+    <title>Portfolio | Israel Buratto - Data Analytics & Operations Research</title>
     <style>
-        :root { --primary: #2c3e50; --accent: #3498db; --text: #333; }
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; }
-        header { background: var(--primary); color: white; padding: 2rem 1rem; text-align: center; }
-        .container { max-width: 1000px; margin: auto; padding: 2rem; }
-        .project { border-left: 5px solid var(--accent); background: #f9f9f9; padding: 1.5rem; margin-bottom: 2rem; border-radius: 0 8px 8px 0; }
-        h2 { color: var(--primary); margin-top: 0; }
-        .tag { display: inline-block; background: #e0e0e0; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.85rem; margin-right: 0.5rem; margin-bottom: 0.5rem; }
-        .impact { font-weight: bold; color: #27ae60; }
-        footer { text-align: center; padding: 2rem; background: #eee; font-size: 0.9rem; }
-        a { color: var(--accent); text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
+        :root { 
+            --primary: #1a2a3a; 
+            --accent: #3498db; 
+            --text: #444; 
+            --bg: #f4f7f6;
+            --white: #ffffff;
+        }
+        
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background: var(--bg); }
+        
+        header { 
+            background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%); 
+            color: white; padding: 4rem 1rem; text-align: center; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .container { max-width: 1100px; margin: auto; padding: 2rem; }
+        
+        /* Project Card Layout */
+        .project { 
+            display: flex; 
+            flex-wrap: wrap; 
+            background: var(--white); 
+            margin-bottom: 3rem; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .project:hover { transform: translateY(-5px); }
+
+        /* Left Side: Image */
+        .project-image { 
+            flex: 1; 
+            min-width: 350px; 
+            max-width: 450px;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-image img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+
+        /* Right Side: Content */
+        .project-content { 
+            flex: 1.5; 
+            padding: 2rem; 
+            min-width: 300px; 
+        }
+
+        h2 { color: var(--primary); margin-top: 0; font-size: 1.6rem; border-bottom: 2px solid var(--accent); display: inline-block; margin-bottom: 1rem; }
+        
+        .section-title { font-weight: bold; color: var(--primary); display: block; margin-top: 1rem; }
+        
+        .badge-container { margin: 1rem 0; }
+        .badge { 
+            display: inline-block; 
+            margin-bottom: 5px;
+        }
+
+        .impact-box { 
+            background: #e8f6ef; 
+            border-left: 4px solid #27ae60; 
+            padding: 1rem; 
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .impact-box b { color: #27ae60; }
+
+        .links { margin-top: 1.5rem; }
+        .btn { 
+            display: inline-block; 
+            background: var(--accent); 
+            color: white !important; 
+            padding: 0.6rem 1.2rem; 
+            border-radius: 6px; 
+            text-decoration: none; 
+            margin-right: 10px;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .btn-outline { background: transparent; color: var(--accent) !important; border: 1px solid var(--accent); }
+        .btn:hover { background: #2980b9; opacity: 0.9; }
+
+        footer { text-align: center; padding: 3rem; background: var(--primary); color: white; margin-top: 4rem; }
+        footer a { color: var(--accent); }
+
+        @media (max-width: 768px) {
+            .project { flex-direction: column; }
+            .project-image { max-width: 100%; min-width: 100%; height: 250px; }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Israel Buratto</h1>
-    <p>Data Analytics & Operations Research Portfolio | Specialized in End-to-End data projects </p>
+    <p>Data Scientist & Operations Research Specialist</p>
+    <p style="font-size: 0.9rem; opacity: 0.8;">Transforming Industrial Complexity into Optimized Data Solutions</p>
 </header>
 
 <div class="container">
 
     <div class="project">
-        <h2>Retail item Demand Forecasting & Price Elasticity (End-to-End)</h2>
-        <p><strong>Challenge:</strong> Predicting daily sales volume at the item-store level to optimize inventory and pricing strategy, simulating a real-world production environment with hybrid cloud/local execution.</p>
-        <p><strong>Stack: </strong>  
-            <span class="tag">Machine Learning</span> 
-            <span class="tag">Python</span> 
-            <span class="tag">SQL</span> 
-            <span class="tag">BigQuery</span> 
-            <span class="tag">DuckDB</span>
-            <span class="tag">Looker Studio</span>
-        </p>
-        <p>Developed an end-to-end pipeline integrating ETL, advanced feature engineering (Lag, Rolling Windows, Cyclical Time), and a log-transformed <b>Random Forest Regressor</b>. The pipeline features a resilient architecture with <b>DuckDB</b> for local SQL execution and automated export to <b>Google BigQuery</b>.</p>
-        <p class="impact">Impact: Achieved ~22% MAPE on standard stores and provided critical business diagnostics by identifying a structural break (Regime Change) in a flagship store outlier, guiding targeted modeling strategies.</p>
-        <a href="https://lookerstudio.google.com/u/0/reporting/69758cba-ec2e-4f60-91fd-218979b431f7/page/V4CoF" target="_blank">View Live Dashboard</a>
-        <a href="https://github.com/item-predictions" target="_blank" style="margin-left: 15px;">View Technical Documentation & Code</a>
+        <div class="project-image">
+            <img src="https://github.com/user-attachments/assets/cfa81f7f-0883-415b-83bb-55576696407a" alt="Item Demand Forecasting">
+        </div>
+        <div class="project-content">
+            <h2>Retail Demand Forecasting & Elasticity</h2>
+            <p><strong>The Challenge:</strong> Predicting daily sales at the item-store level to optimize inventory in a production-ready environment using hybrid cloud architecture.</p>
+            
+            <span class="section-title">Stack:</span>
+            <div class="badge-container">
+                <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
+                <img src="https://img.shields.io/badge/Scikit_Learn-F7931E?style=flat&logo=scikit-learn&logoColor=white" class="badge">
+                <img src="https://img.shields.io/badge/BigQuery-4285F4?style=flat&logo=google-cloud&logoColor=white" class="badge">
+                <img src="https://img.shields.io/badge/DuckDB-FFF000?style=flat&logo=duckdb&logoColor=black" class="badge">
+            </div>
+
+            <p>Integrated an end-to-end pipeline with advanced feature engineering (Lags, Rolling Windows) and a Random Forest Regressor. Built for resilience with DuckDB for local processing.</p>
+            
+            <div class="impact-box">
+                <b>Insight & Impact:</b> Achieved 22% MAPE and identified a "Regime Change" in Store 1 (Flagship), enabling specialized modeling for outlier locations.
+            </div>
+
+            <div class="links">
+                <a href="https://lookerstudio.google.com/u/0/reporting/69758cba-ec2e-4f60-91fd-218979b431f7/page/V4CoF" class="btn" target="_blank">View Live Dashboard</a>
+                <a href="https://github.com/bttisrael/item-predictions" class="btn btn-outline" target="_blank">Documentation</a>
+            </div>
+        </div>
     </div>
 
     <div class="project">
-        <h2>Prescriptive Supply Chain Optimizer | Gurobi & BigQuery</h2>
-        <p><strong>Challenge:</strong> Mitigating detention costs and logistical bottlenecks caused by fixed DC capacities and variable transit times.</p>
-        <p><strong>Stack: </strong>  
-            <span class="tag">Gurobi (MILP)</span> 
-            <span class="tag">Python</span> 
-            <span class="tag">BigQuery</span> 
-            <span class="tag">Looker Studio</span>
-            <span class="tag">Mathematical Modeling</span>
-        </p>
-        <p>Developed a dual-approach scheduling system comparing a <b>Greedy Heuristic</b> vs. <b>Mathematical Optimization (Gurobi)</b>. The model synchronizes origin-destination flows by calculating ETA (Estimated Time of Arrival) based on real-world transit times across 5 Distribution Centers.</p>
-        <p class="impact">Impact: Achieved 100% elimination of detention costs in simulation, optimizing 14,000+ constraints and 4.5M+ decision variables in under 30 seconds.</p>
-        <a href="https://lookerstudio.google.com/u/0/reporting/e586e8a9-75b3-43b0-932c-94433e50a7cc/page/faOIF" target="_blank">View Live Dashboard</a>
-        <a href="https://github.com/bttisrael/logistics-network-solver" target="_blank" style="margin-left: 15px;">View Technical Documentation & Code</a>
-    </div>
+        <div class="project-image">
+            <img src="https://github.com/user-attachments/assets/a653f5d1-6376-48f7-9afa-3337cdedb52d" alt="Logistics Network Solver">
+        </div>
+        <div class="project-content">
+            <h2>Prescriptive Supply Chain Optimizer</h2>
+            <p><strong>The Challenge:</strong> Eliminating detention costs and bottlenecks caused by fixed DC capacities and variable transit times (Lead Times).</p>
+            
+            <span class="section-title">Stack:</span>
+            <div class="badge-container">
+                <img src="https://img.shields.io/badge/Gurobi-Optimization-red" class="badge">
+                <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
+                <img src="https://img.shields.io/badge/BigQuery-4285F4?style=flat&logo=google-cloud&logoColor=white" class="badge">
+                <img src="https://img.shields.io/badge/Mathematical_Modeling-blue" class="badge">
+            </div>
 
-        <div class="project">
-        <h2>Sales Forecasting for Financial Planning | Rossmann Drugstores</h2>
-        <p><strong>Challenge:</strong> Providing an accurate 6-week sales forecast for 1,115 stores to determine the CFO's budget for store renovations.</p>
-        <p><strong>Stack: </strong>  
-            <span class="tag">Python</span> 
-            <span class="tag">XGBoost</span> 
-            <span class="tag">Machine Learning</span> 
-            <span class="tag">Tableau</span>
-            <span class="tag">Exploratory Data Analysis</span>
-        </p>
-        <p>Developed a predictive model using the <b>CRISP-DM</b> methodology. The solution handles complex seasonality, competition effects, and school holidays. The results were delivered through an interactive executive dashboard for drill-down analysis.</p>
-        <p class="impact">Impact: Achieved a 9% MAPE (Mean Absolute Percentage Error), enabling high-precision financial scenarios (Best vs. Worst case) for R$ 285M+ in predicted revenue.</p>
-        <a href="https://public.tableau.com/app/profile/israel.a.o.buratto/viz/Rossmann-predict-sales/Painel1?publish=yes" target="_blank">View Live Tableau Dashboard</a>
-        <a href="https://github.com/bttisrael/rossmann-sales-prediction" target="_blank" style="margin-left: 15px;">View Technical Documentation & Code</a>
+            <p>Developed a MILP (Mixed-Integer Linear Programming) model that optimizes nationwide origin-destination flows by calculating dynamic ETAs across 5 Distribution Centers.</p>
+            
+            <div class="impact-box">
+                <b>Insight & Impact:</b> 100% elimination of detention costs in simulation, solving 4.5M decision variables in under 30 seconds.
+            </div>
+
+            <div class="links">
+                <a href="https://lookerstudio.google.com/u/0/reporting/e586e8a9-75b3-43b0-932c-94433e50a7cc/page/faOIF" class="btn" target="_blank">Live Dashboard</a>
+                <a href="https://github.com/bttisrael/logistics-network-solver" class="btn btn-outline" target="_blank">Technical Code</a>
+            </div>
+        </div>
     </div>
 
     <div class="project">
-        <h2>Retail Performance & Retention Dashboard | Ophyum Modas</h2>
-        <p><strong>Challenge:</strong> Transitioning a family retail business into a data-driven operation.</p>
-        <p><strong>Stack:</strong> <span class="tag">Python</span> <span class="tag">ETL</span> <span class="tag">Looker Studio</span></p>
-        <p>Developed an end-to-end BI solution to analyze a BRL 3.5M revenue database, tracking 11,400+ units sold.</p>
-        <p class="impact">Insight: Implemented a 'Days Since Last Sale' metric to trigger re-engagement for the top-performing 'Bottomwear' category.</p>
-        <a href="https://lookerstudio.google.com/u/0/reporting/d19b9fa2-7e77-42c3-a9c7-2c59cee2fc7e/page/uhojF" target="_blank">View Live Dashboard</a>
-        <a href="https://github.com/bttisrael/sales_ophyum_etl_dashboard" target="_blank" style="margin-left: 15px;">View Technical Documentation & Code</a>
+        <div class="project-image">
+            <img src="https://github.com/user-attachments/assets/7f43d130-4b61-42d8-b9f2-20fd17aaef5e" alt="Rossmann Sales Forecasting">
+        </div>
+        <div class="project-content">
+            <h2>Rossmann Drugstores Sales Forecasting</h2>
+            <p><strong>The Challenge:</strong> Automating 6-week sales projections for 1,115 stores to define the CFO's renovation budget.</p>
+            
+            <span class="section-title">Stack:</span>
+            <div class="badge-container">
+                <img src="https://img.shields.io/badge/XGBoost-Regressor-green" class="badge">
+                <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
+                <img src="https://img.shields.io/badge/Tableau-E97628?style=flat&logo=tableau&logoColor=white" class="badge">
+                <img src="https://img.shields.io/badge/Boruta-Feature_Selection-blue" class="badge">
+            </div>
+
+            <p>Applied the CRISP-DM framework and XGBoost to handle complex seasonality and competition effects. Delivered a drill-down visualization for financial planning.</p>
+            
+            <div class="impact-box">
+                <b>Insight & Impact:</b> Achieved 9% MAPE, providing high-precision "Best vs. Worst" financial scenarios for R$ 285M in predicted revenue.
+            </div>
+
+            <div class="links">
+                <a href="https://public.tableau.com/app/profile/israel.a.o.buratto/viz/Rossmann-predict-sales/Painel1" class="btn" target="_blank">Tableau Panel</a>
+                <a href="https://github.com/bttisrael/rossmann-sales-prediction" class="btn btn-outline" target="_blank">Documentation</a>
+            </div>
+        </div>
     </div>
 
     <div class="project">
-        <h2>E-commerce Digital Transformation | Odoo Implementation</h2>
-        <p><strong>Challenge:</strong> Building the first digital sales channel with a focus on UX and conversion tracking.</p>
-        <p><strong>Stack:</strong> <span class="tag">Odoo</span> <span class="tag">Web Analytics</span> <span class="tag">E-commerce</span></p>
-        <p>Leading the digital strategy to align seasonal sales data with the online shopping experience.</p>
-        <p class="impact">Status: Deploying conversion funnels and behavioral tracking to optimize the connection between brand and consumer.</p>
-        <a href="https://ophyum-modas.odoo.com/" target="_blank">Visit Site</a>
+        <div class="project-image">
+            <img src="https://github.com/user-attachments/assets/545b1fc9-eeb2-41c0-ae6e-4bc3c25d92da" alt="Retail ETL Engine">
+        </div>
+        <div class="project-content">
+            <h2>Retail ETL: PDF to Structured BI</h2>
+            <p><strong>The Challenge:</strong> Extracting granular sales data from legacy unstructured PDF reports for a family retail business.</p>
+            
+            <span class="section-title">Stack:</span>
+            <div class="badge-container">
+                <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" class="badge">
+                <img src="https://img.shields.io/badge/Regex-Parsing-4285F4" class="badge">
+                <img src="https://img.shields.io/badge/Looker_Studio-BI-blue" class="badge">
+            </div>
+
+            <p>Created a Regex-based sanitization engine to parse inconsistent descriptions and categorize 11,000+ units into Families (Topwear, Bottomwear).</p>
+            
+            <div class="impact-box">
+                <b>Insight & Impact:</b> 95% automation of data prep. Implemented "Days Since Last Sale" metric to trigger re-engagement for top customers.
+            </div>
+
+            <div class="links">
+                <a href="https://lookerstudio.google.com/u/0/reporting/d19b9fa2-7e77-42c3-a9c7-2c59cee2fc7e/page/uhojF" class="btn" target="_blank">View Dashboard</a>
+                <a href="https://github.com/bttisrael/sales_ophyum_etl_dashboard" class="btn btn-outline" target="_blank">ETL Code</a>
+            </div>
+        </div>
     </div>
 
 </div>
 
 <footer>
-    <p>Let's connect on <a href="https://www.linkedin.com/in/israelburatto/" target="_blank">LinkedIn</a></p>
+    <p>Let's build something efficient together.</p>
+    <p><a href="https://www.linkedin.com/in/israelburatto/" target="_blank">LinkedIn</a> | <a href="https://github.com/bttisrael" target="_blank">GitHub</a></p>
 </footer>
 
 </body>
 </html>
-
-
-
