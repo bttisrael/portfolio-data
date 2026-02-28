@@ -10,8 +10,8 @@
         :root { 
             --bg-dark: #0d1117;    
             --bg-card: #161b22;    
-            --accent: #f472b6;     
-            --accent-blue: #38bdf8; 
+            --accent: #f472b6;     /* Pink Neon */
+            --accent-blue: #38bdf8; /* Cyan */
             --text-main: #e6edf3;  
             --text-dim: #8b949e;   
             --border: #30363d;
@@ -34,23 +34,46 @@
         .header-left p { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
 
         .social-links { display: flex; gap: 1.5rem; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
-        .social-links a { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .social-links a { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: 0.2s; }
         .social-links a:hover { color: var(--accent-blue); }
+
+        /* Grid para About e Achievements */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
 
         .about-card { 
             background: var(--bg-card); 
             border: 1px solid var(--border); 
             border-radius: 12px; 
-            padding: 2rem; margin-top: 2rem;
+            padding: 1.8rem; 
         }
-        .about-card h2 { color: var(--accent); margin-top: 0; display: flex; align-items: center; gap: 0.8rem; }
+        .about-card h2 { color: var(--accent); margin-top: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
+        .about-card p { font-size: 0.95rem; margin-bottom: 0; }
+
+        .achievements-list { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; }
+        .achievements-list li { 
+            margin-bottom: 10px; 
+            padding-left: 1.2rem; 
+            position: relative; 
+        }
+        .achievements-list li::before { 
+            content: ">"; 
+            position: absolute; 
+            left: 0; 
+            color: var(--accent-blue); 
+            font-weight: bold; 
+            font-family: 'JetBrains Mono', monospace;
+        }
 
         .container { max-width: 1100px; margin: auto; padding: 2rem; }
         
         .section-title { margin: 3rem 0 2rem; border-left: 4px solid var(--accent-blue); padding-left: 1.5rem; }
         .section-title h2 { font-size: 1.8rem; color: var(--text-main); margin: 0; }
 
-        /* Grid de 2 colunas para os projetos */
         .projects-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -63,12 +86,12 @@
             border: 1px solid var(--border);
             transition: all 0.3s ease;
             display: flex;
-            flex-direction: column; /* Vertical dentro do card da grid */
+            flex-direction: column;
             overflow: hidden;
         }
         .project:hover { border-color: var(--accent); transform: translateY(-5px); }
 
-        .project-image { width: 100%; height: 200px; background: #000; }
+        .project-image { width: 100%; height: 220px; background: #000; }
         .project-image img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
 
         .project-content { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
@@ -92,7 +115,7 @@
             padding: 12px; 
             border-radius: 8px; 
             border-left: 3px solid var(--accent-blue);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             flex-grow: 1;
         }
         .impact-box b { font-size: 0.65rem; text-transform: uppercase; color: var(--accent-blue); display: block; }
@@ -103,13 +126,14 @@
             text-decoration: none; font-size: 0.8rem; font-weight: 700;
             color: var(--accent); border: 1px solid var(--accent);
             padding: 6px 12px; border-radius: 6px;
+            transition: 0.2s;
         }
         .btn-link:hover { background: var(--accent); color: var(--bg-dark); }
 
         footer { text-align: center; padding: 4rem; color: var(--text-dim); border-top: 1px solid var(--border); }
 
         @media (max-width: 900px) {
-            .projects-grid { grid-template-columns: 1fr; }
+            .projects-grid, .summary-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -119,19 +143,30 @@
     <div class="header-container">
         <div class="header-left">
             <h1>Israel Buratto</h1>
-            <p>Data Science & Prescriptive Analytics</p>
+            <p>Data Science & Optimization</p>
         </div>
         <div class="social-links">
             <a href="https://linkedin.com/in/israelburatto" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
             <a href="https://github.com/bttisrael" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             <a href="mailto:israelburatto@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://bttisrael.github.io/portfolio-data/" target="_blank"><i class="fas fa-file-pdf"></i> Resume</a>
+            <a href="#"><i class="fas fa-file-pdf"></i> Resume</a>
         </div>
     </div>
 
-    <div class="about-card">
-        <h2><i class="fas fa-user-circle"></i> About</h2>
-        [cite_start]<p>Senior Data Analyst com mais de 4 anos de experiência[cite: 45]. [cite_start]Especialista em **Supply Chain Optimization** [cite: 48] [cite_start]e construção de sistemas orientados à decisão para logística e produção[cite: 44]. [cite_start]Stack técnica focado em **Python, SQL, BigQuery, Gurobi e OTIMIX**[cite: 73, 74].</p>
+    <div class="summary-grid">
+        <div class="about-card">
+            <h2><i class="fas fa-user-circle"></i> About</h2>
+            <p>Senior Data Analyst with 4+ years of experience engineering decision-driven systems. Specialized in **Supply Chain Optimization** and building automated pipelines that save thousands of manual hours. My tech stack includes **Python, SQL, BigQuery, Gurobi, and OTIMIX**.</p>
+        </div>
+        <div class="about-card">
+            <h2><i class="fas fa-trophy"></i> Key Achievements</h2>
+            <ul class="achievements-list">
+                <li>Identified **BRL 11M+** in cost-saving via logistics optimization.</li>
+                <li>Automated scheduling saving **1200+ manual hours/year** via RPA.</li>
+                <li>Led production mix optimization resulting in a **BRL 3M+ turnaround**.</li>
+                <li>Engineered ETL pipelines processing **BRL 90M+** in monthly transactions.</li>
+            </ul>
+        </div>
     </div>
 </header>
 
@@ -148,16 +183,15 @@
             </div>
             <div class="project-content">
                 <h3>Elite Squad Optimizer</h3>
-                [cite_start]<p>Mixed-Integer Programming para encontrar escalações matematicamente ideais[cite: 67].</p>
+                <p>Mixed-Integer Programming para encontrar escalações ideais sob restrições de orçamento.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
                     <div class="tech-tag"><i class="fas fa-database"></i> Gurobi</div>
-                    <div class="tech-tag"><i class="fas fa-cloud"></i> BigQuery</div>
                     <div class="tech-tag"><i class="fas fa-rocket"></i> Streamlit</div>
                 </div>
                 <div class="impact-box">
                     <b>Impact</b>
-                    <p>Otimização de elencos de €200M+ em milissegundos. [cite_start]ETL automatizado[cite: 67].</p>
+                    <p>Otimização de elencos de €200M+ em milissegundos. ETL automatizado via API.</p>
                 </div>
                 <div class="links">
                     <a href="https://football-scout-optimizer-mh6nvte9ucnyz3kw8sreng.streamlit.app/" class="btn-link" target="_blank">[live_app]</a>
@@ -171,8 +205,8 @@
                 <img src="https://github.com/user-attachments/assets/7f43d130-4b61-42d8-b9f2-20fd17aaef5e">
             </div>
             <div class="project-content">
-                <h3>Rossmann Sales</h3>
-                [cite_start]<p>Previsão de receita para 1.115 lojas visando orçamento de reformas[cite: 68].</p>
+                <h3>Rossmann Sales Prediction</h3>
+                <p>Previsão de receita para 1.115 lojas utilizando XGBoost para suporte a decisões de CAPEX.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
                     <div class="tech-tag"><i class="fas fa-brain"></i> XGBoost</div>
@@ -180,7 +214,7 @@
                 </div>
                 <div class="impact-box">
                     <b>Impact</b>
-                    <p>MAPE de 9% alcançado para mais de R$ 285M em receita prevista.</p>
+                    <p>MAPE de 9% alcançado para R$ 285M+ em receita prevista.</p>
                 </div>
                 <div class="links">
                     <a href="https://public.tableau.com/app/profile/israel.a.o.buratto/viz/Rossmann-predict-sales/Painel1" class="btn-link" target="_blank">[dashboard]</a>
@@ -195,7 +229,7 @@
             </div>
             <div class="project-content">
                 <h3>Retail ETL: PDF to BI</h3>
-                [cite_start]<p>Extração automatizada de SKUs de relatórios legados via Regex e Python[cite: 46].</p>
+                <p>Pipeline de extração automatizada de SKUs de relatórios PDF não estruturados via Regex.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
                     <div class="tech-tag"><i class="fas fa-file-code"></i> Regex</div>
@@ -203,7 +237,7 @@
                 </div>
                 <div class="impact-box">
                     <b>Impact</b>
-                    <p>Redução de 95% no tempo de preparação de dados. Métricas de retenção implementadas.</p>
+                    <p>Redução de 95% no tempo de preparação de dados e métricas de retenção.</p>
                 </div>
                 <div class="links">
                     <a href="https://lookerstudio.google.com/u/0/reporting/d19b9fa2-7e77-42c3-a9c7-2c59cee2fc7e/page/uhojF" class="btn-link" target="_blank">[dashboard]</a>
@@ -217,8 +251,8 @@
                 <img src="https://github.com/user-attachments/assets/cfa81f7f-0883-415b-83bb-55576696407a">
             </div>
             <div class="project-content">
-                <h3>Store Forecasting</h3>
-                [cite_start]<p>Previsão de demanda diária para otimização de estoque via SQL híbrido[cite: 68].</p>
+                <h3>Store Demand Forecasting</h3>
+                <p>Previsão de demanda diária para otimização de estoque usando SQL híbrido.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fab fa-python"></i> Scikit-Learn</div>
                     <div class="tech-tag"><i class="fas fa-database"></i> DuckDB</div>
@@ -226,11 +260,34 @@
                 </div>
                 <div class="impact-box">
                     <b>Impact</b>
-                    <p>MAPE de 15%. [cite_start]Identificação de quebras estruturais em lojas principais[cite: 68].</p>
+                    <p>MAPE de 15% e identificação de quebras estruturais em lojas flagship.</p>
                 </div>
                 <div class="links">
                     <a href="https://lookerstudio.google.com/u/0/reporting/69758cba-ec2e-4f60-91fd-218979b431f7/page/V4CoF" class="btn-link" target="_blank">[dashboard]</a>
                     <a href="https://github.com/bttisrael/item-predictions" class="btn-link" target="_blank">[code]</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-image">
+                <img src="https://github.com/user-attachments/assets/a653f5d1-6376-48f7-9afa-3337cdedb52d">
+            </div>
+            <div class="project-content">
+                <h3>Logistics Optimizer (DCs)</h3>
+                <p>Sincronização de capacidade de DCs com tempos de trânsito variáveis via MILP.</p>
+                <div class="tech-stack-container">
+                    <div class="tech-tag"><i class="fas fa-database"></i> Gurobi</div>
+                    <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
+                    <div class="tech-tag"><i class="fas fa-microchip"></i> MILP</div>
+                </div>
+                <div class="impact-box">
+                    <b>Impact</b>
+                    <p>Eliminação de 100% de custos de estadia. 4.5M variáveis resolvidas em <30s.</p>
+                </div>
+                <div class="links">
+                    <a href="https://lookerstudio.google.com/u/0/reporting/e586e8a9-75b3-43b0-932c-94433e50a7cc/page/faOIF" class="btn-link" target="_blank">[dashboard]</a>
+                    <a href="https://github.com/bttisrael/logistics-network-solver" class="btn-link" target="_blank">[logic]</a>
                 </div>
             </div>
         </div>
