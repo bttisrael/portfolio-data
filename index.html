@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Israel Buratto | Data Engineer Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { 
-            --bg-dark: #0d1117;    /* Fundo estilo GitHub Dark */
-            --bg-card: #161b22;    /* Fundo dos cards */
-            --accent: #f472b6;     /* Rosa Neon (Pink) */
-            --accent-blue: #38bdf8; /* Ciano para detalhes */
-            --text-main: #e6edf3;  /* Texto principal */
-            --text-dim: #8b949e;   /* Texto secundário */
+            --bg-dark: #0d1117;    
+            --bg-card: #161b22;    
+            --accent: #f472b6;     /* Pink Neon */
+            --accent-blue: #38bdf8; /* Cyan */
+            --text-main: #e6edf3;  
+            --text-dim: #8b949e;   
             --border: #30363d;
         }
         
@@ -29,86 +30,92 @@
         
         header { 
             padding: 4rem 2rem;
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
-            border-bottom: 1px solid var(--border);
         }
 
-        .header-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .header-container { display: flex; flex-direction: column; gap: 1rem; }
+        .header-left h1 { margin: 0; font-size: 2.8rem; color: var(--text-main); }
+        .header-left p { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+
+        .social-links { display: flex; gap: 1.5rem; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+        .social-links a { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+        .social-links a:hover { color: var(--accent-blue); }
+
+        .about-card { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            padding: 2rem; 
+            margin-top: 2rem;
         }
+        .about-card h2 { color: var(--accent); margin-top: 0; display: flex; align-items: center; gap: 0.8rem; }
 
-        .header-left h1 { margin: 0; font-size: 2.5rem; color: var(--text-main); }
-        .header-left p { color: var(--accent); font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-
-        .header-right { 
-            margin-top: 1.5rem;
-            font-size: 0.95rem;
-            color: var(--text-dim);
-        }
-        .header-right b { color: var(--accent-blue); }
-
-        .container { max-width: 900px; margin: auto; padding: 2rem; }
+        .container { max-width: 950px; margin: auto; padding: 2rem; }
         
-        .section-intro { margin-bottom: 3rem; border-left: 4px solid var(--accent); padding-left: 1.5rem; }
-        .section-intro h2 { font-size: 1.5rem; color: var(--text-main); margin: 0; }
+        .section-title { margin: 3rem 0 2rem; border-left: 4px solid var(--accent-blue); padding-left: 1.5rem; }
+        .section-title h2 { font-size: 1.8rem; color: var(--text-main); margin: 0; }
 
-        .projects-grid { 
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-        }
+        .projects-grid { display: flex; flex-direction: column; gap: 2.5rem; }
 
         .project { 
             background: var(--bg-card); 
-            border-radius: 8px; 
+            border-radius: 12px; 
             border: 1px solid var(--border);
             transition: all 0.3s ease;
             display: flex;
-            flex-direction: row; /* Layout horizontal como o exemplo */
             overflow: hidden;
         }
-        .project:hover { border-color: var(--accent); transform: translateX(5px); }
+        .project:hover { border-color: var(--accent); transform: translateX(8px); }
 
-        .project-image { width: 35%; min-width: 250px; background: #000; }
-        .project-image img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .project-image { width: 35%; min-width: 300px; background: #000; }
+        .project-image img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
 
-        .project-content { padding: 1.5rem; flex: 1; }
-        .project-content h3 { margin: 0 0 10px; font-size: 1.3rem; color: var(--accent-blue); }
+        .project-content { padding: 2rem; flex: 1; }
+        .project-content h3 { margin: 0 0 10px; font-size: 1.5rem; color: var(--accent-blue); }
         
-        .challenge { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 1rem; }
-        
-        .badge-container { margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 8px; }
-        .badge { border: 1px solid var(--border); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; background: #0d1117; color: var(--text-dim); }
-
-        .impact-minibox { 
-            background: rgba(56, 189, 248, 0.05); 
-            padding: 12px; 
+        /* Estilo dos Botões de Tech Stack como na imagem 21c8bb */
+        .tech-stack-container { display: flex; flex-wrap: wrap; gap: 10px; margin: 1.5rem 0; }
+        .tech-tag { 
+            background: #1c2128; 
+            border: 1px solid var(--border); 
+            color: var(--text-main); 
+            padding: 6px 14px; 
             border-radius: 6px; 
-            margin-bottom: 1.2rem;
-            border-left: 2px solid var(--accent-blue);
-        }
-        .impact-minibox b { font-size: 0.7rem; text-transform: uppercase; color: var(--accent-blue); display: block; }
-        .impact-minibox p { margin: 4px 0 0; font-size: 0.9rem; color: var(--text-main); }
-
-        .links { display: flex; gap: 12px; }
-        .btn { 
-            text-decoration: none; 
             font-size: 0.85rem; 
-            font-weight: 700;
             font-family: 'JetBrains Mono', monospace;
-            color: var(--text-main);
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 2px;
-            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .btn:hover { opacity: 0.7; }
+        .tech-tag i { color: var(--accent-blue); font-size: 1rem; }
 
-        footer { text-align: center; padding: 4rem; font-size: 0.8rem; color: var(--text-dim); border-top: 1px solid var(--border); }
+        .impact-box { 
+            background: rgba(56, 189, 248, 0.05); 
+            padding: 15px; 
+            border-radius: 8px; 
+            border-left: 3px solid var(--accent-blue);
+            margin-bottom: 1.5rem;
+        }
+        .impact-box b { font-size: 0.75rem; text-transform: uppercase; color: var(--accent-blue); display: block; letter-spacing: 1px; }
+        .impact-box p { margin: 5px 0 0; font-size: 0.95rem; }
 
-        @media (max-width: 768px) {
+        .links { display: flex; gap: 15px; font-family: 'JetBrains Mono', monospace; }
+        .btn-link { 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 700;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .btn-link:hover { background: var(--accent); color: var(--bg-dark); }
+
+        footer { text-align: center; padding: 5rem; color: var(--text-dim); border-top: 1px solid var(--border); }
+
+        @media (max-width: 850px) {
             .project { flex-direction: column; }
             .project-image { width: 100%; height: 200px; }
         }
@@ -120,43 +127,96 @@
     <div class="header-container">
         <div class="header-left">
             <h1>Israel Buratto</h1>
-            <p>Data Science & Optimization</p>
+            <p>Data Science & Prescriptive Analytics</p>
         </div>
-        <div class="header-right mono">
-            > <b>BRL 11M</b> identified in savings via vehicle occupation tool<br>
-            > <b>1000+ hours</b> automated per year using <b>RPA (Python)</b><br>
-            > <b>BRL 3M+</b> turnaround led via production mix optimization
+        <div class="social-links">
+            <a href="https://linkedin.com/in/israelburatto" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/bttisrael" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="mailto:israelburatto@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+            <a href="#" target="_blank"><i class="fas fa-file-pdf"></i> Resume</a>
         </div>
+    </div>
+
+    <div class="about-card">
+        <h2><i class="fas fa-user-circle"></i> About</h2>
+        [cite_start]<p>Senior Data Analyst with 4+ years of experience engineering decision-driven systems[cite: 5, 6]. [cite_start]Specialized in **Supply Chain Optimization** [cite: 9] [cite_start]and building automated pipelines that save thousands of manual hours[cite: 16]. [cite_start]My tech stack includes **Python, SQL, BigQuery, Gurobi, and OTIMIX**[cite: 34, 35].</p>
     </div>
 </header>
 
 <div class="container">
-    <div class="section-intro">
-        <h2>/projects</h2>
+    <div class="section-title">
+        <h2>/featured_projects</h2>
     </div>
 
     <div class="projects-grid">
         
         <div class="project">
             <div class="project-image">
-                <img src="https://github.com/bttisrael/football-scout-optimizer/raw/main/fundo_app.png" alt="Squad Optimizer">
+                <img src="https://github.com/bttisrael/football-scout-optimizer/raw/main/fundo_app.png">
             </div>
             <div class="project-content">
                 <h3>Elite Squad Optimizer</h3>
-                <p class="challenge">Mathematically optimal starting eleven using Mixed-Integer Programming.</p>
-                <div class="badge-container mono">
-                    <span class="badge">Gurobi</span>
-                    <span class="badge">Python</span>
-                    <span class="badge">BigQuery</span>
-                    <span class="badge">Streamlit</span>
+                [cite_start]<p>Mixed-Integer Programming to find mathematically optimal line-ups under budget constraints[cite: 28].</p>
+                <div class="tech-stack-container">
+                    <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
+                    <div class="tech-tag"><i class="fas fa-database"></i> Gurobi</div>
+                    <div class="tech-tag"><i class="fas fa-cloud"></i> BigQuery</div>
+                    <div class="tech-tag"><i class="fas fa-rocket"></i> Streamlit</div>
                 </div>
-                <div class="impact-minibox">
+                <div class="impact-box">
                     <b>Impact</b>
-                    <p>Optimized €200M+ squads in ms. Automated ETL from Kaggle and Football-Data API.</p>
+                    [cite_start]<p>Optimized €200M+ squads in ms[cite: 28]. Automated ETL from Football-Data API.</p>
                 </div>
                 <div class="links">
-                    <a href="https://football-scout-optimizer-mh6nvte9ucnyz3kw8sreng.streamlit.app/" class="btn" target="_blank">[live_app]</a>
-                    <a href="https://github.com/bttisrael/football-scout-optimizer" class="btn" target="_blank">[source_code]</a>
+                    <a href="https://football-scout-optimizer-mh6nvte9ucnyz3kw8sreng.streamlit.app/" class="btn-link" target="_blank">[live_app]</a>
+                    <a href="https://github.com/bttisrael/football-scout-optimizer" class="btn-link" target="_blank">[code]</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-image">
+                <img src="https://github.com/user-attachments/assets/7f43d130-4b61-42d8-b9f2-20fd17aaef5e">
+            </div>
+            <div class="project-content">
+                <h3>Rossmann Sales Prediction</h3>
+                <p>6-week revenue projections for 1,115 stores using XGBoost for renovation budgeting.</p>
+                <div class="tech-stack-container">
+                    <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
+                    <div class="tech-tag"><i class="fas fa-brain"></i> XGBoost</div>
+                    <div class="tech-tag"><i class="fas fa-chart-line"></i> Tableau</div>
+                </div>
+                <div class="impact-box">
+                    <b>Impact</b>
+                    <p>Achieved 9% MAPE for R$ 285M+ in predicted revenue.</p>
+                </div>
+                <div class="links">
+                    <a href="https://public.tableau.com/app/profile/israel.a.o.buratto/viz/Rossmann-predict-sales/Painel1" class="btn-link" target="_blank">[dashboard]</a>
+                    <a href="https://github.com/bttisrael/rossmann-sales-prediction" class="btn-link" target="_blank">[code]</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-image">
+                <img src="https://github.com/user-attachments/assets/545b1fc9-eeb2-41c0-ae6e-4bc3c25d92da">
+            </div>
+            <div class="project-content">
+                <h3>Retail ETL: PDF to BI</h3>
+                <p>Automating SKU-level extraction from legacy unstructured PDF reports using Regex.</p>
+                <div class="tech-stack-container">
+                    <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
+                    <div class="tech-tag"><i class="fas fa-file-code"></i> Regex</div>
+                    <div class="tech-tag"><i class="fas fa-table"></i> Pandas</div>
+                    <div class="tech-tag"><i class="fas fa-chart-pie"></i> Looker</div>
+                </div>
+                <div class="impact-box">
+                    <b>Impact</b>
+                    <p>95% reduction in data prep time. Implemented retention metrics.</p>
+                </div>
+                <div class="links">
+                    <a href="https://lookerstudio.google.com/u/0/reporting/d19b9fa2-7e77-42c3-a9c7-2c59cee2fc7e/page/uhojF" class="btn-link" target="_blank">[dashboard]</a>
+                    <a href="https://github.com/bttisrael/sales_ophyum_etl_dashboard" class="btn-link" target="_blank">[code]</a>
                 </div>
             </div>
         </div>
@@ -166,44 +226,20 @@
                 <img src="https://github.com/user-attachments/assets/cfa81f7f-0883-415b-83bb-55576696407a">
             </div>
             <div class="project-content">
-                <h3>Demand Forecasting</h3>
-                <p class="challenge">Item-store sales prediction for inventory optimization.</p>
-                <div class="badge-container mono">
-                    <span class="badge">LightGBM</span>
-                    <span class="badge">Python</span>
-                    <span class="badge">BigQuery</span>
-                    <span class="badge">DuckDB</span>
+                <h3>Store Demand Forecasting</h3>
+                [cite_start]<p>Predicting daily sales to optimize inventory using hybrid cloud/local SQL[cite: 29].</p>
+                <div class="tech-stack-container">
+                    <div class="tech-tag"><i class="fab fa-python"></i> Scikit-Learn</div>
+                    <div class="tech-tag"><i class="fas fa-database"></i> DuckDB</div>
+                    <div class="tech-tag"><i class="fas fa-cloud"></i> BigQuery</div>
                 </div>
-                <div class="impact-minibox">
+                <div class="impact-box">
                     <b>Impact</b>
-                    <p>Achieved 15% MAPE and identified structural breaks in flagship stores.</p>
+                    [cite_start]<p>Achieved 15% MAPE[cite: 15]. [cite_start]Identified structural breaks in flagship stores[cite: 29].</p>
                 </div>
                 <div class="links">
-                    <a href="https://lookerstudio.google.com/u/0/reporting/69758cba-ec2e-4f60-91fd-218979b431f7/page/V4CoF" class="btn" target="_blank">[dashboard]</a>
-                    <a href="https://github.com/bttisrael/item-predictions" class="btn" target="_blank">[code]</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="project">
-            <div class="project-image">
-                <img src="https://github.com/user-attachments/assets/a653f5d1-6376-48f7-9afa-3337cdedb52d">
-            </div>
-            <div class="project-content">
-                <h3>Logistics Optimizer</h3>
-                <p class="challenge">Synchronizing DC capacity with variable transit times via MILP.</p>
-                <div class="badge-container mono">
-                    <span class="badge">Gurobi</span>
-                    <span class="badge">Python</span>
-                    <span class="badge">Optimization</span>
-                </div>
-                <div class="impact-minibox">
-                    <b>Impact</b>
-                    <p>100% elimination of detention costs. Solved 4.5M variables in <30s.</p>
-                </div>
-                <div class="links">
-                    <a href="https://lookerstudio.google.com/u/0/reporting/e586e8a9-75b3-43b0-932c-94433e50a7cc/page/faOIF" class="btn" target="_blank">[dashboard]</a>
-                    <a href="https://github.com/bttisrael/logistics-network-solver" class="btn" target="_blank">[logic]</a>
+                    <a href="https://lookerstudio.google.com/u/0/reporting/69758cba-ec2e-4f60-91fd-218979b431f7/page/V4CoF" class="btn-link" target="_blank">[dashboard]</a>
+                    <a href="https://github.com/bttisrael/item-predictions" class="btn-link" target="_blank">[code]</a>
                 </div>
             </div>
         </div>
@@ -212,7 +248,7 @@
 </div>
 
 <footer>
-    <p class="mono">01001001 01000010 | <a href="https://www.linkedin.com/in/israelburatto/" style="color:var(--accent); text-decoration:none;">linkedin</a></p>
+    <p class="mono">// Designed for performance & scale<br>© 2026 Israel Buratto</p>
 </footer>
 
 </body>
