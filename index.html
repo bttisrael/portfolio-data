@@ -37,7 +37,9 @@
         .social-links a { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: 0.2s; }
         .social-links a:hover { color: var(--accent-blue); }
 
-        /* Grid para About e Achievements */
+        /* Estilo para simular negrito do markdown */
+        .bold-highlight { font-weight: 700; color: var(--text-main); }
+
         .summary-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -156,15 +158,15 @@
     <div class="summary-grid">
         <div class="about-card">
             <h2><i class="fas fa-user-circle"></i> About</h2>
-            <p>Senior Data Analyst with 4+ years of experience engineering decision-driven systems. Specialized in **Supply Chain Optimization** and building automated pipelines that save thousands of manual hours. My tech stack includes **Python, SQL, BigQuery, Gurobi, and OTIMIX**.</p>
+            <p>Senior Data Analyst with 4+ years of experience engineering decision-driven systems. Specialized in <span class="bold-highlight">Supply Chain Optimization</span> and building automated pipelines that save thousands of manual hours. My tech stack includes <span class="bold-highlight">Python, SQL, BigQuery, Gurobi, and OTIMIX</span>.</p>
         </div>
         <div class="about-card">
             <h2><i class="fas fa-trophy"></i> Key Achievements</h2>
             <ul class="achievements-list">
-                <li>Identified **BRL 11M+** in cost-saving via logistics optimization.</li>
-                <li>Automated scheduling saving **1200+ manual hours/year** via RPA.</li>
-                <li>Led production mix optimization resulting in a **BRL 3M+ turnaround**.</li>
-                <li>Engineered ETL pipelines processing **BRL 90M+** in monthly transactions.</li>
+                <li>Identified <span class="bold-highlight">BRL 11M+</span> in cost savings via logistics optimization.</li>
+                <li>Automated scheduling, saving <span class="bold-highlight">1,200+ manual hours/year</span> via RPA.</li>
+                <li>Led production mix optimization resulting in a <span class="bold-highlight">BRL 3M+ turnaround</span>.</li>
+                <li>Engineered ETL pipelines processing <span class="bold-highlight">BRL 90M+</span> in monthly transactions.</li>
             </ul>
         </div>
     </div>
@@ -183,7 +185,7 @@
             </div>
             <div class="project-content">
                 <h3>Elite Squad Optimizer</h3>
-                <p>Mixed-Integer Programming para encontrar escalações ideais sob restrições de orçamento.</p>
+                <p>Mixed-Integer Programming to find optimal line-ups under budget constraints.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
                     <div class="tech-tag"><i class="fas fa-database"></i> Gurobi</div>
@@ -191,7 +193,7 @@
                 </div>
                 <div class="impact-box">
                     <b>Impact</b>
-                    <p>Otimização de elencos de €200M+ em milissegundos. ETL automatizado via API.</p>
+                    <p>Optimized €200M+ squads in milliseconds. Automated ETL via API.</p>
                 </div>
                 <div class="links">
                     <a href="https://football-scout-optimizer-mh6nvte9ucnyz3kw8sreng.streamlit.app/" class="btn-link" target="_blank">[live_app]</a>
@@ -206,7 +208,7 @@
             </div>
             <div class="project-content">
                 <h3>Rossmann Sales Prediction</h3>
-                <p>Previsão de receita para 1.115 lojas utilizando XGBoost para suporte a decisões de CAPEX.</p>
+                <p>Revenue forecasting for 1,115 stores using XGBoost to support CAPEX decisions.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
                     <div class="tech-tag"><i class="fas fa-brain"></i> XGBoost</div>
@@ -214,7 +216,7 @@
                 </div>
                 <div class="impact-box">
                     <b>Impact</b>
-                    <p>MAPE de 9% alcançado para R$ 285M+ em receita prevista.</p>
+                    <p>Achieved 9% MAPE for over BRL 285M in predicted revenue.</p>
                 </div>
                 <div class="links">
                     <a href="https://public.tableau.com/app/profile/israel.a.o.buratto/viz/Rossmann-predict-sales/Painel1" class="btn-link" target="_blank">[dashboard]</a>
@@ -229,7 +231,7 @@
             </div>
             <div class="project-content">
                 <h3>Retail ETL: PDF to BI</h3>
-                <p>Pipeline de extração automatizada de SKUs de relatórios PDF não estruturados via Regex.</p>
+                <p>Automated SKU extraction pipeline from unstructured PDF reports using Regex.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
                     <div class="tech-tag"><i class="fas fa-file-code"></i> Regex</div>
@@ -237,7 +239,7 @@
                 </div>
                 <div class="impact-box">
                     <b>Impact</b>
-                    <p>Redução de 95% no tempo de preparação de dados e métricas de retenção.</p>
+                    <p>95% reduction in data prep time for retention metrics.</p>
                 </div>
                 <div class="links">
                     <a href="https://lookerstudio.google.com/u/0/reporting/d19b9fa2-7e77-42c3-a9c7-2c59cee2fc7e/page/uhojF" class="btn-link" target="_blank">[dashboard]</a>
@@ -252,7 +254,7 @@
             </div>
             <div class="project-content">
                 <h3>Store Demand Forecasting</h3>
-                <p>Previsão de demanda diária para otimização de estoque usando SQL híbrido.</p>
+                <p>Daily demand forecasting for inventory optimization using hybrid SQL.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fab fa-python"></i> Scikit-Learn</div>
                     <div class="tech-tag"><i class="fas fa-database"></i> DuckDB</div>
@@ -260,7 +262,7 @@
                 </div>
                 <div class="impact-box">
                     <b>Impact</b>
-                    <p>MAPE de 15% e identificação de quebras estruturais em lojas flagship.</p>
+                    <p>15% MAPE and identification of structural breaks in flagship stores.</p>
                 </div>
                 <div class="links">
                     <a href="https://lookerstudio.google.com/u/0/reporting/69758cba-ec2e-4f60-91fd-218979b431f7/page/V4CoF" class="btn-link" target="_blank">[dashboard]</a>
@@ -275,7 +277,7 @@
             </div>
             <div class="project-content">
                 <h3>Logistics Optimizer (DCs)</h3>
-                <p>Sincronização de capacidade de DCs com tempos de trânsito variáveis via MILP.</p>
+                <p>DC capacity synchronization with variable transit times via MILP.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fas fa-database"></i> Gurobi</div>
                     <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
@@ -283,7 +285,7 @@
                 </div>
                 <div class="impact-box">
                     <b>Impact</b>
-                    <p>Eliminação de 100% de custos de estadia. 4.5M variáveis resolvidas em <30s.</p>
+                    <p>100% elimination of detention costs. 4.5M variables solved in <30s.</p>
                 </div>
                 <div class="links">
                     <a href="https://lookerstudio.google.com/u/0/reporting/e586e8a9-75b3-43b0-932c-94433e50a7cc/page/faOIF" class="btn-link" target="_blank">[dashboard]</a>
