@@ -37,7 +37,6 @@
         .social-links a { color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: 0.2s; }
         .social-links a:hover { color: var(--accent-blue); }
 
-        /* Estilo para simular negrito do markdown */
         .bold-highlight { font-weight: 700; color: var(--text-main); }
 
         .summary-grid {
@@ -93,8 +92,44 @@
         }
         .project:hover { border-color: var(--accent); transform: translateY(-5px); }
 
+        /* Special highlight for the featured/new project */
+        .project.featured {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px var(--accent), 0 0 24px rgba(244, 114, 182, 0.12);
+        }
+        .project.featured:hover {
+            box-shadow: 0 0 0 1px var(--accent), 0 0 36px rgba(244, 114, 182, 0.22);
+        }
+
+        .new-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg-dark);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            margin-left: 8px;
+            vertical-align: middle;
+            text-transform: uppercase;
+        }
+
         .project-image { width: 100%; height: 220px; background: #000; }
         .project-image img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+
+        /* Generative cover for projects without a screenshot */
+        .project-image.generative {
+            position: relative;
+            overflow: hidden;
+            background: #0d1117;
+        }
+        .project-image.generative canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
 
         .project-content { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
         .project-content h3 { margin: 0 0 10px; font-size: 1.3rem; color: var(--accent-blue); }
@@ -178,7 +213,33 @@
     </div>
 
     <div class="projects-grid">
-        
+
+        <!-- ── NEW: Auto Data Scientist v7 ── -->
+        <div class="project featured">
+            <div class="project-image generative">
+                <canvas id="agentCanvas"></canvas>
+            </div>
+            <div class="project-content">
+                <h3>Auto Data Scientist v7 <span class="new-badge">new</span></h3>
+                <p>SOTA multi-agent pipeline that autonomously ingests data, engineers features, trains models, and self-heals using Claude as the reasoning engine inside each step.</p>
+                <div class="tech-stack-container">
+                    <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
+                    <div class="tech-tag"><i class="fas fa-robot"></i> CrewAI</div>
+                    <div class="tech-tag"><i class="fas fa-brain"></i> Claude 3.5</div>
+                    <div class="tech-tag"><i class="fas fa-sliders-h"></i> Optuna</div>
+                    <div class="tech-tag"><i class="fas fa-cogs"></i> scikit-learn</div>
+                    <div class="tech-tag"><i class="fas fa-bolt"></i> XGBoost</div>
+                </div>
+                <div class="impact-box">
+                    <b>Impact</b>
+                    <p>End-to-end ML pipeline — from raw Kaggle data to tuned stacking ensemble — with zero manual intervention. Self-healing code execution and AI-written feature engineering.</p>
+                </div>
+                <div class="links">
+                    <a href="https://github.com/bttisrael/agente_ds2" class="btn-link" target="_blank">[code]</a>
+                </div>
+            </div>
+        </div>
+
         <div class="project">
             <div class="project-image">
                 <img src="https://github.com/bttisrael/football-scout-optimizer/raw/main/fundo_app.png">
@@ -239,7 +300,7 @@
                 </div>
                 <div class="impact-box">
                     <b>Impact</b>
-                    <p>100% elimination of detention costs. 4.5M variables solved in <30s.</p>
+                    <p>100% elimination of detention costs. 4.5M variables solved in &lt;30s.</p>
                 </div>
                 <div class="links">
                     <a href="https://lookerstudio.google.com/u/0/reporting/e586e8a9-75b3-43b0-932c-94433e50a7cc/page/faOIF" class="btn-link" target="_blank">[dashboard]</a>
@@ -301,8 +362,154 @@
     <p class="mono">// Scalable Decision Systems<br>© 2026 Israel Buratto</p>
 </footer>
 
+<script>
+    // Generative cover for Auto Data Scientist v7
+    // Draws animated nodes + edges that look like a multi-agent graph
+    (function () {
+        const canvas = document.getElementById('agentCanvas');
+        if (!canvas) return;
+
+        const parent = canvas.parentElement;
+        canvas.width  = parent.offsetWidth  || 520;
+        canvas.height = parent.offsetHeight || 220;
+
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width, H = canvas.height;
+
+        const PINK  = '#f472b6';
+        const CYAN  = '#38bdf8';
+        const DIM   = '#30363d';
+        const BG    = '#0d1117';
+
+        const LABELS = ['Ingestor', 'Analyst', 'Feat.Eng', 'EDA', 'ML Sci'];
+        const N = LABELS.length;
+
+        // Fixed node positions in a pipeline arc
+        const nodes = LABELS.map((label, i) => {
+            const t = (i / (N - 1));
+            return {
+                x: 60 + t * (W - 120),
+                y: H / 2 + Math.sin(t * Math.PI) * -40 + (i % 2 === 0 ? -10 : 10),
+                label,
+                r: 18,
+                pulse: Math.random() * Math.PI * 2,
+            };
+        });
+
+        // Floating data particles travelling along edges
+        const particles = [];
+        for (let e = 0; e < N - 1; e++) {
+            for (let p = 0; p < 2; p++) {
+                particles.push({ edge: e, t: Math.random(), speed: 0.003 + Math.random() * 0.003 });
+            }
+        }
+
+        // Subtle background grid dots
+        const dots = [];
+        for (let x = 20; x < W; x += 32) {
+            for (let y = 12; y < H; y += 28) {
+                dots.push({ x, y });
+            }
+        }
+
+        let frame = 0;
+
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+
+            // BG
+            ctx.fillStyle = BG;
+            ctx.fillRect(0, 0, W, H);
+
+            // Grid dots
+            dots.forEach(d => {
+                ctx.beginPath();
+                ctx.arc(d.x, d.y, 1, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(56,189,248,0.07)';
+                ctx.fill();
+            });
+
+            // Edges
+            for (let i = 0; i < N - 1; i++) {
+                const a = nodes[i], b = nodes[i + 1];
+                ctx.beginPath();
+                ctx.moveTo(a.x, a.y);
+                ctx.lineTo(b.x, b.y);
+                ctx.strokeStyle = DIM;
+                ctx.lineWidth = 1.5;
+                ctx.setLineDash([5, 6]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+
+            // Particles along edges
+            particles.forEach(p => {
+                p.t += p.speed;
+                if (p.t > 1) p.t = 0;
+                const a = nodes[p.edge], b = nodes[p.edge + 1];
+                const px = a.x + (b.x - a.x) * p.t;
+                const py = a.y + (b.y - a.y) * p.t;
+
+                const grad = ctx.createRadialGradient(px, py, 0, px, py, 6);
+                grad.addColorStop(0, 'rgba(244,114,182,0.9)');
+                grad.addColorStop(1, 'rgba(244,114,182,0)');
+                ctx.beginPath();
+                ctx.arc(px, py, 5, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
+            });
+
+            // Nodes
+            nodes.forEach((n, i) => {
+                n.pulse += 0.04;
+                const glow = 8 + Math.sin(n.pulse) * 3;
+                const isFirst = i === 0, isLast = i === N - 1;
+                const color = isLast ? PINK : CYAN;
+
+                // Outer glow ring
+                const outerGrad = ctx.createRadialGradient(n.x, n.y, n.r - 2, n.x, n.y, n.r + glow);
+                outerGrad.addColorStop(0, isLast ? 'rgba(244,114,182,0.25)' : 'rgba(56,189,248,0.18)');
+                outerGrad.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.r + glow, 0, Math.PI * 2);
+                ctx.fillStyle = outerGrad;
+                ctx.fill();
+
+                // Node fill
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                ctx.fillStyle = '#161b22';
+                ctx.fill();
+                ctx.strokeStyle = color;
+                ctx.lineWidth = isLast ? 2.5 : 1.8;
+                ctx.stroke();
+
+                // Inner dot
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, 5, 0, Math.PI * 2);
+                ctx.fillStyle = color;
+                ctx.fill();
+
+                // Label
+                ctx.font = '700 9px JetBrains Mono, monospace';
+                ctx.fillStyle = color;
+                ctx.textAlign = 'center';
+                ctx.fillText(n.label, n.x, n.y + n.r + 14);
+            });
+
+            // Watermark label
+            ctx.font = '700 11px JetBrains Mono, monospace';
+            ctx.fillStyle = 'rgba(244,114,182,0.35)';
+            ctx.textAlign = 'right';
+            ctx.fillText('multi-agent · crewai · claude 3.5', W - 14, H - 10);
+
+            frame++;
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    })();
+</script>
+
 </body>
 </html>
-
-
-
