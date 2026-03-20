@@ -92,7 +92,6 @@
         }
         .project:hover { border-color: var(--accent); transform: translateY(-5px); }
 
-        /* Special highlight for the featured/new project */
         .project.featured {
             border-color: var(--accent);
             box-shadow: 0 0 0 1px var(--accent), 0 0 24px rgba(244, 114, 182, 0.12);
@@ -119,7 +118,6 @@
         .project-image { width: 100%; height: 220px; background: #000; }
         .project-image img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
 
-        /* Generative cover for projects without a screenshot */
         .project-image.generative {
             position: relative;
             overflow: hidden;
@@ -214,13 +212,13 @@
 
     <div class="projects-grid">
 
-        <!-- ── NEW: Auto Data Scientist ── -->
-        <div class="project featured">
+        <!-- ── Auto Data Scientist v1 ── -->
+        <div class="project">
             <div class="project-image generative">
-                <canvas id="agentCanvas"></canvas>
+                <canvas id="agentCanvasV1"></canvas>
             </div>
             <div class="project-content">
-                <h3>Auto Data Scientist <span class="new-badge">new</span></h3>
+                <h3>Auto Data Scientist</h3>
                 <p>Multi-agent pipeline that autonomously ingests data, engineers features, trains models, and self-heals using Claude as the reasoning engine inside each step.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
@@ -236,6 +234,32 @@
                 </div>
                 <div class="links">
                     <a href="https://github.com/bttisrael/agente_ds" class="btn-link" target="_blank">[code]</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Auto Data Scientist v2 (NEW) ── -->
+        <div class="project featured">
+            <div class="project-image generative">
+                <canvas id="agentCanvasV2"></canvas>
+            </div>
+            <div class="project-content">
+                <h3>Auto Data Scientist v2 <span class="new-badge">new</span></h3>
+                <p>9-agent prescriptive pipeline with Boruta feature selection, Optuna tuning, self-healing code, Telegram bot deployment, and a zero-dependency HTML business dashboard — all driven by Claude inside every step.</p>
+                <div class="tech-stack-container">
+                    <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
+                    <div class="tech-tag"><i class="fas fa-robot"></i> CrewAI</div>
+                    <div class="tech-tag"><i class="fas fa-brain"></i> Claude 3.5</div>
+                    <div class="tech-tag"><i class="fab fa-telegram"></i> Telegram</div>
+                    <div class="tech-tag"><i class="fas fa-bolt"></i> XGBoost</div>
+                    <div class="tech-tag"><i class="fas fa-chart-bar"></i> Chart.js</div>
+                </div>
+                <div class="impact-box">
+                    <b>Impact</b>
+                    <p>97.45% accuracy on 180k supply-chain records. 9 specialized agents — from raw CSV to Telegram bot + shareable HTML dashboard — with zero manual intervention.</p>
+                </div>
+                <div class="links">
+                    <a href="https://github.com/bttisrael/agente_ds2" class="btn-link" target="_blank">[code]</a>
                 </div>
             </div>
         </div>
@@ -363,152 +387,190 @@
 </footer>
 
 <script>
-    // Generative cover for Auto Data Scientist v7
-    // Draws animated nodes + edges that look like a multi-agent graph
-    (function () {
-        const canvas = document.getElementById('agentCanvas');
-        if (!canvas) return;
+// ─── Shared canvas renderer ────────────────────────────────────────────────
+function buildAgentCanvas(canvasId, agentLabels, accentColor) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
 
-        const parent = canvas.parentElement;
-        canvas.width  = parent.offsetWidth  || 520;
-        canvas.height = parent.offsetHeight || 220;
+    const parent = canvas.parentElement;
+    canvas.width  = parent.offsetWidth  || 520;
+    canvas.height = parent.offsetHeight || 220;
 
-        const ctx = canvas.getContext('2d');
-        const W = canvas.width, H = canvas.height;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
 
-        const PINK  = '#f472b6';
-        const CYAN  = '#38bdf8';
-        const DIM   = '#30363d';
-        const BG    = '#0d1117';
+    const CYAN  = '#38bdf8';
+    const DIM   = '#30363d';
+    const BG    = '#0d1117';
+    const N = agentLabels.length;
 
-        const LABELS = ['Ingestor', 'Analyst', 'Feat.Eng', 'EDA', 'ML Sci'];
-        const N = LABELS.length;
+    // Snake layout: row 1 left→right, row 2 right→left
+    const ROW1 = Math.ceil(N / 2);
+    const ROW2 = N - ROW1;
+    const PAD_X = 52, PAD_Y = 38;
+    const ROW1_Y = H * 0.32;
+    const ROW2_Y = H * 0.72;
 
-        // Fixed node positions in a pipeline arc
-        const nodes = LABELS.map((label, i) => {
-            const t = (i / (N - 1));
-            return {
-                x: 60 + t * (W - 120),
-                y: H / 2 + Math.sin(t * Math.PI) * -40 + (i % 2 === 0 ? -10 : 10),
-                label,
-                r: 18,
-                pulse: Math.random() * Math.PI * 2,
-            };
+    function rowPositions(count, y, reversed) {
+        const positions = [];
+        for (let i = 0; i < count; i++) {
+            const t = count === 1 ? 0.5 : i / (count - 1);
+            const x = PAD_X + t * (W - PAD_X * 2);
+            positions.push({ x, y });
+        }
+        return reversed ? positions.reverse() : positions;
+    }
+
+    const row1Pos = rowPositions(ROW1, ROW1_Y, false);
+    const row2Pos = rowPositions(ROW2, ROW2_Y, true);
+    const allPos  = [...row1Pos, ...row2Pos];
+
+    const nodes = agentLabels.map((label, i) => ({
+        ...allPos[i],
+        label,
+        r: 16,
+        pulse: Math.random() * Math.PI * 2,
+        isLast: i === N - 1,
+    }));
+
+    // Build edge list (sequential pipeline)
+    const edges = [];
+    for (let i = 0; i < N - 1; i++) {
+        edges.push([i, i + 1]);
+    }
+
+    // Particles along edges
+    const particles = edges.map(([a, b]) => ({
+        a, b,
+        t: Math.random(),
+        speed: 0.003 + Math.random() * 0.003,
+    }));
+    // Second particle per edge offset by 0.5
+    edges.forEach(([a, b]) => {
+        particles.push({ a, b, t: (Math.random() + 0.5) % 1, speed: 0.003 + Math.random() * 0.003 });
+    });
+
+    // Background grid dots
+    const dots = [];
+    for (let x = 18; x < W; x += 30) {
+        for (let y = 10; y < H; y += 26) {
+            dots.push({ x, y });
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = BG;
+        ctx.fillRect(0, 0, W, H);
+
+        // Grid dots
+        ctx.fillStyle = 'rgba(56,189,248,0.06)';
+        dots.forEach(d => {
+            ctx.beginPath();
+            ctx.arc(d.x, d.y, 1, 0, Math.PI * 2);
+            ctx.fill();
         });
 
-        // Floating data particles travelling along edges
-        const particles = [];
-        for (let e = 0; e < N - 1; e++) {
-            for (let p = 0; p < 2; p++) {
-                particles.push({ edge: e, t: Math.random(), speed: 0.003 + Math.random() * 0.003 });
-            }
-        }
-
-        // Subtle background grid dots
-        const dots = [];
-        for (let x = 20; x < W; x += 32) {
-            for (let y = 12; y < H; y += 28) {
-                dots.push({ x, y });
-            }
-        }
-
-        let frame = 0;
-
-        function draw() {
-            ctx.clearRect(0, 0, W, H);
-
-            // BG
-            ctx.fillStyle = BG;
-            ctx.fillRect(0, 0, W, H);
-
-            // Grid dots
-            dots.forEach(d => {
-                ctx.beginPath();
-                ctx.arc(d.x, d.y, 1, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(56,189,248,0.07)';
-                ctx.fill();
-            });
-
-            // Edges
-            for (let i = 0; i < N - 1; i++) {
-                const a = nodes[i], b = nodes[i + 1];
-                ctx.beginPath();
-                ctx.moveTo(a.x, a.y);
+        // Edges
+        ctx.setLineDash([4, 5]);
+        ctx.lineWidth = 1.2;
+        edges.forEach(([ai, bi]) => {
+            const a = nodes[ai], b = nodes[bi];
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            // Elbow for the snake turn (row1 last → row2 first)
+            if (ai === ROW1 - 1 && bi === ROW1) {
+                const midX = (a.x + b.x) / 2;
+                ctx.lineTo(a.x, (ROW1_Y + ROW2_Y) / 2);
+                ctx.lineTo(b.x, (ROW1_Y + ROW2_Y) / 2);
                 ctx.lineTo(b.x, b.y);
-                ctx.strokeStyle = DIM;
-                ctx.lineWidth = 1.5;
-                ctx.setLineDash([5, 6]);
-                ctx.stroke();
-                ctx.setLineDash([]);
+            } else {
+                ctx.lineTo(b.x, b.y);
             }
+            ctx.strokeStyle = DIM;
+            ctx.stroke();
+        });
+        ctx.setLineDash([]);
 
-            // Particles along edges
-            particles.forEach(p => {
-                p.t += p.speed;
-                if (p.t > 1) p.t = 0;
-                const a = nodes[p.edge], b = nodes[p.edge + 1];
-                const px = a.x + (b.x - a.x) * p.t;
-                const py = a.y + (b.y - a.y) * p.t;
+        // Particles
+        particles.forEach(p => {
+            p.t += p.speed;
+            if (p.t > 1) p.t = 0;
+            const a = nodes[p.a], b = nodes[p.b];
+            const px = a.x + (b.x - a.x) * p.t;
+            const py = a.y + (b.y - a.y) * p.t;
+            const grad = ctx.createRadialGradient(px, py, 0, px, py, 5);
+            grad.addColorStop(0, accentColor + 'e6');
+            grad.addColorStop(1, accentColor + '00');
+            ctx.beginPath();
+            ctx.arc(px, py, 4.5, 0, Math.PI * 2);
+            ctx.fillStyle = grad;
+            ctx.fill();
+        });
 
-                const grad = ctx.createRadialGradient(px, py, 0, px, py, 6);
-                grad.addColorStop(0, 'rgba(244,114,182,0.9)');
-                grad.addColorStop(1, 'rgba(244,114,182,0)');
-                ctx.beginPath();
-                ctx.arc(px, py, 5, 0, Math.PI * 2);
-                ctx.fillStyle = grad;
-                ctx.fill();
-            });
+        // Nodes
+        nodes.forEach(n => {
+            n.pulse += 0.038;
+            const glow = 7 + Math.sin(n.pulse) * 3;
+            const color = n.isLast ? accentColor : CYAN;
 
-            // Nodes
-            nodes.forEach((n, i) => {
-                n.pulse += 0.04;
-                const glow = 8 + Math.sin(n.pulse) * 3;
-                const isFirst = i === 0, isLast = i === N - 1;
-                const color = isLast ? PINK : CYAN;
+            // Glow ring
+            const og = ctx.createRadialGradient(n.x, n.y, n.r - 2, n.x, n.y, n.r + glow);
+            og.addColorStop(0, color + '30');
+            og.addColorStop(1, color + '00');
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r + glow, 0, Math.PI * 2);
+            ctx.fillStyle = og;
+            ctx.fill();
 
-                // Outer glow ring
-                const outerGrad = ctx.createRadialGradient(n.x, n.y, n.r - 2, n.x, n.y, n.r + glow);
-                outerGrad.addColorStop(0, isLast ? 'rgba(244,114,182,0.25)' : 'rgba(56,189,248,0.18)');
-                outerGrad.addColorStop(1, 'rgba(0,0,0,0)');
-                ctx.beginPath();
-                ctx.arc(n.x, n.y, n.r + glow, 0, Math.PI * 2);
-                ctx.fillStyle = outerGrad;
-                ctx.fill();
+            // Node bg
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+            ctx.fillStyle = '#161b22';
+            ctx.fill();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = n.isLast ? 2.2 : 1.6;
+            ctx.stroke();
 
-                // Node fill
-                ctx.beginPath();
-                ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-                ctx.fillStyle = '#161b22';
-                ctx.fill();
-                ctx.strokeStyle = color;
-                ctx.lineWidth = isLast ? 2.5 : 1.8;
-                ctx.stroke();
+            // Inner dot
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, 4.5, 0, Math.PI * 2);
+            ctx.fillStyle = color;
+            ctx.fill();
 
-                // Inner dot
-                ctx.beginPath();
-                ctx.arc(n.x, n.y, 5, 0, Math.PI * 2);
-                ctx.fillStyle = color;
-                ctx.fill();
+            // Label
+            ctx.font = '700 8px JetBrains Mono, monospace';
+            ctx.fillStyle = color;
+            ctx.textAlign = 'center';
+            ctx.fillText(n.label, n.x, n.y + n.r + 12);
+        });
 
-                // Label
-                ctx.font = '700 9px JetBrains Mono, monospace';
-                ctx.fillStyle = color;
-                ctx.textAlign = 'center';
-                ctx.fillText(n.label, n.x, n.y + n.r + 14);
-            });
+        // Watermark
+        ctx.font = '700 10px JetBrains Mono, monospace';
+        ctx.fillStyle = accentColor + '55';
+        ctx.textAlign = 'right';
+        ctx.fillText('multi-agent · crewai · claude 3.5', W - 12, H - 8);
 
-            // Watermark label
-            ctx.font = '700 11px JetBrains Mono, monospace';
-            ctx.fillStyle = 'rgba(244,114,182,0.35)';
-            ctx.textAlign = 'right';
-            ctx.fillText('multi-agent · crewai · claude 3.5', W - 14, H - 10);
+        requestAnimationFrame(draw);
+    }
 
-            frame++;
-            requestAnimationFrame(draw);
-        }
+    draw();
+}
 
-        draw();
-    })();
+// ─── v1: 5 agents ─────────────────────────────────────────────────────────
+buildAgentCanvas(
+    'agentCanvasV1',
+    ['Ingestor', 'Analyst', 'Feat.Eng', 'EDA', 'ML Sci'],
+    '#f472b6'
+);
+
+// ─── v2: 9 agents (snake layout) ──────────────────────────────────────────
+buildAgentCanvas(
+    'agentCanvasV2',
+    ['Ingestor', 'Analyst', 'Feat.Eng', 'EDA', 'Hyp.Val',
+     'ML Sci', 'Deployer', 'Notebook', 'BI Dash'],
+    '#f472b6'
+);
 </script>
 
 </body>
