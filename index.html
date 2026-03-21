@@ -156,7 +156,7 @@
         .impact-box b { font-size: 0.65rem; text-transform: uppercase; color: var(--accent-blue); display: block; }
         .impact-box p { margin: 3px 0 0; font-size: 0.85rem; }
 
-        .links { display: flex; gap: 10px; font-family: 'JetBrains Mono', monospace; }
+        .links { display: flex; gap: 10px; font-family: 'JetBrains Mono', monospace; flex-wrap: wrap; }
         .btn-link { 
             text-decoration: none; font-size: 0.8rem; font-weight: 700;
             color: var(--accent); border: 1px solid var(--accent);
@@ -164,6 +164,48 @@
             transition: 0.2s;
         }
         .btn-link:hover { background: var(--accent); color: var(--bg-dark); }
+
+        .btn-link.telegram {
+            color: #38bdf8;
+            border-color: #38bdf8;
+        }
+        .btn-link.telegram:hover {
+            background: #38bdf8;
+            color: var(--bg-dark);
+        }
+
+        .btn-link.dashboard {
+            color: #a78bfa;
+            border-color: #a78bfa;
+        }
+        .btn-link.dashboard:hover {
+            background: #a78bfa;
+            color: var(--bg-dark);
+        }
+
+        /* Live pulse indicator */
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            color: #22c55e;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-left: 4px;
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse-green 1.6s infinite;
+        }
+        @keyframes pulse-green {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
 
         footer { text-align: center; padding: 4rem; color: var(--text-dim); border-top: 1px solid var(--border); }
 
@@ -244,8 +286,12 @@
                 <canvas id="agentCanvasV2"></canvas>
             </div>
             <div class="project-content">
-                <h3>Auto Data Scientist v2 <span class="new-badge">new</span></h3>
-                <p>9-agent prescriptive pipeline with Boruta feature selection, Optuna tuning, self-healing code, Telegram bot deployment, and a zero-dependency HTML business dashboard — all driven by Claude inside every step.</p>
+                <h3>
+                    Auto Data Scientist v2
+                    <span class="new-badge">new</span>
+                    <span class="live-badge"><span class="live-dot"></span>live</span>
+                </h3>
+                <p>10-agent prescriptive pipeline with Boruta feature selection, Optuna tuning, self-healing code, Telegram bot deployment, HTML business dashboard, and auto-deploy to Oracle Cloud — all driven by Claude inside every step.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
                     <div class="tech-tag"><i class="fas fa-robot"></i> CrewAI</div>
@@ -253,13 +299,16 @@
                     <div class="tech-tag"><i class="fab fa-telegram"></i> Telegram</div>
                     <div class="tech-tag"><i class="fas fa-bolt"></i> XGBoost</div>
                     <div class="tech-tag"><i class="fas fa-chart-bar"></i> Chart.js</div>
+                    <div class="tech-tag"><i class="fas fa-cloud"></i> Oracle Cloud</div>
                 </div>
                 <div class="impact-box">
                     <b>Impact</b>
-                    <p>97.45% accuracy on 180k supply-chain records. 9 specialized agents — from raw CSV to Telegram bot + shareable HTML dashboard — with zero manual intervention.</p>
+                    <p>97.45% accuracy on 180k supply-chain records. 10 specialized agents — from raw CSV to live Telegram bot + shareable HTML dashboard + auto cloud deploy — with zero manual intervention.</p>
                 </div>
                 <div class="links">
                     <a href="https://github.com/bttisrael/agente_ds2" class="btn-link" target="_blank">[code]</a>
+                    <a href="https://t.me/YOUR_BOT_USERNAME" class="btn-link telegram" target="_blank"><i class="fab fa-telegram"></i> [bot_demo]</a>
+                    <a href="https://bttisrael.github.io/agente_ds2/dashboard.html" class="btn-link dashboard" target="_blank"><i class="fas fa-chart-pie"></i> [dashboard]</a>
                 </div>
             </div>
         </div>
@@ -480,7 +529,6 @@ function buildAgentCanvas(canvasId, agentLabels, accentColor) {
             ctx.moveTo(a.x, a.y);
             // Elbow for the snake turn (row1 last → row2 first)
             if (ai === ROW1 - 1 && bi === ROW1) {
-                const midX = (a.x + b.x) / 2;
                 ctx.lineTo(a.x, (ROW1_Y + ROW2_Y) / 2);
                 ctx.lineTo(b.x, (ROW1_Y + ROW2_Y) / 2);
                 ctx.lineTo(b.x, b.y);
@@ -564,11 +612,11 @@ buildAgentCanvas(
     '#f472b6'
 );
 
-// ─── v2: 9 agents (snake layout) ──────────────────────────────────────────
+// ─── v2: 10 agents (snake layout) ─────────────────────────────────────────
 buildAgentCanvas(
     'agentCanvasV2',
     ['Ingestor', 'Analyst', 'Feat.Eng', 'EDA', 'Hyp.Val',
-     'ML Sci', 'Deployer', 'Notebook', 'BI Dash'],
+     'ML Sci', 'Deployer', 'Notebook', 'BI Dash', 'Cloud☁'],
     '#f472b6'
 );
 </script>
