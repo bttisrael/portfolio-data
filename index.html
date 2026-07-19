@@ -302,31 +302,39 @@
             </div>
             <div class="project-content">
                 <h3>
-                    Beverage Fleet Optimizer
+                    Beverage Forecasting &amp; Fleet Optimization
                     <span class="new-badge">new</span>
-                    <span class="live-badge"><span class="live-dot"></span>live 24/7</span>
+                    <span class="live-badge"><span class="live-dot"></span>live</span>
                 </h3>
-                <p>End-to-end supply-chain planning platform combining daily demand generation, rolling 21-day forecasting, heterogeneous fleet optimization, route-cost analysis, and interactive operational planning on AWS.</p>
+                <p>Production-style MLOps and operations-research platform that forecasts beverage demand 21 days ahead, converts uncertainty into P50/P90 capacity plans, and minimizes fleet size plus route freight cost across a heterogeneous vehicle network.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
+                    <div class="tech-tag"><i class="fas fa-brain"></i> AutoML</div>
+                    <div class="tech-tag"><i class="fas fa-tree"></i> Scikit-learn</div>
                     <div class="tech-tag"><i class="fas fa-cubes"></i> Pyomo</div>
-                    <div class="tech-tag"><i class="fas fa-chart-line"></i> ML Forecasting</div>
-                    <div class="tech-tag"><i class="fas fa-cloud"></i> AWS Fargate</div>
+                    <div class="tech-tag"><i class="fas fa-bolt"></i> HiGHS</div>
+                    <div class="tech-tag"><i class="fas fa-cloud"></i> ECS/Fargate</div>
                     <div class="tech-tag"><i class="fas fa-database"></i> Aurora DSQL</div>
-                    <div class="tech-tag"><i class="fab fa-docker"></i> Docker</div>
-                    <div class="tech-tag"><i class="fas fa-code-branch"></i> CI/CD</div>
+                    <div class="tech-tag"><i class="fas fa-box-archive"></i> S3 Model Registry</div>
+                    <div class="tech-tag"><i class="fas fa-code-branch"></i> GitHub Actions</div>
+                    <div class="tech-tag"><i class="fas fa-layer-group"></i> AWS CDK</div>
                     <div class="tech-tag"><i class="fas fa-chart-bar"></i> Streamlit</div>
                 </div>
                 <div class="architecture-flow" aria-label="Beverage Fleet Optimizer architecture">
-                    <strong>Demand</strong><i class="fas fa-chevron-right"></i>
-                    <strong>ML Forecast</strong><i class="fas fa-chevron-right"></i>
-                    <strong>Pyomo</strong><i class="fas fa-chevron-right"></i>
+                    <strong>EventBridge</strong><i class="fas fa-chevron-right"></i>
                     <strong>Aurora DSQL</strong><i class="fas fa-chevron-right"></i>
-                    <strong>Streamlit</strong>
+                    <strong>AutoML + S3</strong><i class="fas fa-chevron-right"></i>
+                    <strong>Pyomo</strong><i class="fas fa-chevron-right"></i>
+                    <strong>FastAPI + Streamlit</strong><i class="fas fa-chevron-right"></i>
+                    <strong>ECS/Fargate</strong>
                 </div>
                 <div class="impact-box">
-                    <b>Production scope</b>
-                    <p>Processes 597,922 historical demand records across 45 logistics routes and optimizes seven vehicle types by capacity, distance, fleet size, and freight cost.</p>
+                    <b>Measured model performance</b>
+                    <p>AutoML selected Histogram Gradient Boosting on a recursive 21-day holdout: <strong>28.7% WAPE</strong> versus <strong>60.5%</strong> for the weekday baseline&mdash;a <strong>52.7% relative improvement</strong>. The champion is versioned in Aurora DSQL, stored privately in S3, monitored daily, and retrained only after sustained degradation.</p>
+                </div>
+                <div class="impact-box">
+                    <b>Production and optimization scope</b>
+                    <p>Runs 24/7 on AWS across <strong>45 routes</strong> and <strong>seven vehicle types</strong>, with scheduled demand generation, P10/P50/P90 forecasts, cost-aware Pyomo optimization, CloudWatch observability, infrastructure as code, protected CI/CD, and load-balancer health gates.</p>
                 </div>
                 <div class="links">
                     <a href="http://orflee-optim-5z8y1eu8xjzt-747546465.us-east-2.elb.amazonaws.com/" class="btn-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-arrow-up-right-from-square"></i> Open live platform</a>
@@ -345,7 +353,6 @@
                 <h3>
                     Auto Data Scientist v2
                     <span class="new-badge">new</span>
-                    <span class="live-badge"><span class="live-dot"></span>live</span>
                 </h3>
                 <p>10-agent prescriptive pipeline with Boruta feature selection, Optuna tuning, self-healing code, Telegram bot deployment, HTML business dashboard, and auto-deploy to Oracle Cloud — all driven by Claude inside every step.</p>
                 <div class="tech-stack-container">
@@ -382,7 +389,7 @@
                 <h3>
                     CommerceFlow AI
                     <span class="new-badge">new</span>
-                    <span class="live-badge"><span class="live-dot"></span>building</span>
+                    <span class="live-badge"><span class="live-dot"></span>live</span>
                 </h3>
                 <p>End-to-end cloud-native ML production simulator for e-commerce logistics. The system generates synthetic orders every day, ingests data through Cloud Run, stores raw/silver/gold layers in BigQuery, trains a delay-risk model with a CrewAI-orchestrated pipeline, deploys inference through Vertex AI, and exposes live operational and ML predictions in a public Vercel dashboard.</p>
                 <div class="tech-stack-container">
