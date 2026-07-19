@@ -202,6 +202,24 @@
             border-radius: 50%;
             animation: pulse-green 1.6s infinite;
         }
+
+        .architecture-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin: 0 0 1.2rem;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(56, 189, 248, 0.035);
+            color: var(--text-dim);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+        }
+        .architecture-flow strong { color: var(--accent-blue); }
+        .architecture-flow i { color: var(--accent); font-size: 0.58rem; }
         @keyframes pulse-green {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.4; transform: scale(0.7); }
@@ -211,6 +229,21 @@
 
         @media (max-width: 900px) {
             .projects-grid, .summary-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header { padding: 2.5rem 1.1rem; }
+            .container { padding: 1.1rem; }
+            .header-left h1 { font-size: 2rem; }
+            .header-left p { font-size: 0.78rem; letter-spacing: 1px; }
+            .social-links { flex-wrap: wrap; gap: 0.8rem 1.1rem; }
+            .about-card, .project-content { padding: 1.15rem; }
+            .project-image { height: 190px; }
+            .section-title { margin-top: 1.5rem; }
+            .section-title h2 { font-size: 1.35rem; }
+            .links { display: grid; grid-template-columns: 1fr; }
+            .btn-link { text-align: center; padding: 10px 12px; }
+            footer { padding: 2.5rem 1rem; }
         }
     </style>
 </head>
@@ -236,10 +269,10 @@
     <br>
     <p style="font-size:0.85rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; line-height: 1.8;">
         <span style="color:var(--accent-blue)">languages</span> &nbsp;→&nbsp; Python · SQL<br>
-        <span style="color:var(--accent-blue)">ml &amp; optimization</span> &nbsp;→&nbsp; Scikit-learn · XGBoost · LightGBM · K-means · Clustering · Optuna · Gurobi · OR Tools<br>
+        <span style="color:var(--accent-blue)">ml &amp; optimization</span> &nbsp;→&nbsp; Scikit-learn · XGBoost · Forecasting · Pyomo · HiGHS · Gurobi · OR-Tools<br>
         <span style="color:var(--accent-blue)">ai &amp; llms</span> &nbsp;→&nbsp; Claude API · CrewAI · Multi-Agent Systems· Vertex AI<br>
-        <span style="color:var(--accent-blue)">cloud &amp; platforms</span> &nbsp;→&nbsp; BigQuery · Oracle Cloud ·Cloud Run/Scheduler<br>
-        <span style="color:var(--accent-blue)">tools</span> &nbsp;→&nbsp; Git · Jupyter · Telegram Bot API · OTIMIX· Looker Studio/Tableau· Vercel· Streamlit
+        <span style="color:var(--accent-blue)">cloud &amp; platforms</span> &nbsp;→&nbsp; AWS ECS/Fargate · Aurora DSQL · CodeBuild · CloudWatch · BigQuery · Oracle Cloud · Cloud Run<br>
+        <span style="color:var(--accent-blue)">tools</span> &nbsp;→&nbsp; Docker · FastAPI · Streamlit · GitHub Actions · Git · Jupyter · Looker Studio · Tableau
     </p>
         </div>
         <div class="about-card">
@@ -248,8 +281,8 @@
                 <li>Identified <span class="bold-highlight">BRL 15M+</span> in cost savings via logistics optimization.</li>
                 <li>Automated scheduling, saving <span class="bold-highlight">1,600+ manual hours/year</span> via RPA.</li>
                 <li>Led production mix optimization resulting in a <span class="bold-highlight">BRL 3M+ turnaround</span>.</li>
-                <li>Engineered a palletization solver increasing <span class="bold-highlight">10%</span> vehicle occupations.</li>
-                <li>Built a 10-agent Auto Data Scientist pipeline with zero manual intervention that deploys a self-healing ML live 24/7 via Telegram</li>
+                <li>Engineered a palletization solver increasing vehicle utilization by <span class="bold-highlight">10%</span>.</li>
+                <li>Built a 10-agent Auto Data Scientist pipeline that deploys self-healing ML services with zero manual intervention.</li>
             </ul>
         </div>
     </div>
@@ -268,22 +301,37 @@
                 <img src="assets/beverage-fleet-optimizer.png.png" alt="Beverage Fleet Optimizer preview" loading="lazy">
             </div>
             <div class="project-content">
-                <h3>Beverage Fleet Optimizer <span class="new-badge">new</span></h3>
-                <p>Cloud-native operations research platform that generates seasonal beverage demand, enriches daily programming data, and minimizes vehicle requirements with a Pyomo optimization solver and ML forecast.</p>
+                <h3>
+                    Beverage Fleet Optimizer
+                    <span class="new-badge">new</span>
+                    <span class="live-badge"><span class="live-dot"></span>live 24/7</span>
+                </h3>
+                <p>End-to-end supply-chain planning platform combining daily demand generation, rolling 21-day forecasting, heterogeneous fleet optimization, route-cost analysis, and interactive operational planning on AWS.</p>
                 <div class="tech-stack-container">
                     <div class="tech-tag"><i class="fab fa-python"></i> Python</div>
                     <div class="tech-tag"><i class="fas fa-cubes"></i> Pyomo</div>
-                    <div class="tech-tag"><i class="fas fa-cloud"></i> AWS ECS</div>
+                    <div class="tech-tag"><i class="fas fa-chart-line"></i> Forecasting</div>
+                    <div class="tech-tag"><i class="fas fa-cloud"></i> AWS Fargate</div>
                     <div class="tech-tag"><i class="fas fa-database"></i> Aurora DSQL</div>
-                    <div class="tech-tag"><i class="fas fa-chart-line"></i> Streamlit</div>
+                    <div class="tech-tag"><i class="fab fa-docker"></i> Docker</div>
+                    <div class="tech-tag"><i class="fas fa-code-branch"></i> CI/CD</div>
+                    <div class="tech-tag"><i class="fas fa-chart-bar"></i> Streamlit</div>
+                </div>
+                <div class="architecture-flow" aria-label="Beverage Fleet Optimizer architecture">
+                    <strong>Demand</strong><i class="fas fa-chevron-right"></i>
+                    <strong>Forecast</strong><i class="fas fa-chevron-right"></i>
+                    <strong>Pyomo</strong><i class="fas fa-chevron-right"></i>
+                    <strong>Aurora DSQL</strong><i class="fas fa-chevron-right"></i>
+                    <strong>Streamlit</strong>
                 </div>
                 <div class="impact-box">
-                    <b>Impact</b>
-                    <p>Automated demand-to-load planning with editable solver parameters, macro results, and detailed operational vehicle load plans.</p>
+                    <b>Production scope</b>
+                    <p>Processes 597,922 historical demand records across 45 logistics routes and optimizes seven vehicle types by capacity, distance, fleet size, and freight cost.</p>
                 </div>
                 <div class="links">
-                    <a href="http://orflee-optim-5z8y1eu8xjzt-747546465.us-east-2.elb.amazonaws.com/" class="btn-link" target="_blank">[live_app]</a>
-                    <a href="https://github.com/bttisrael/aws-solver-pyomo" class="btn-link" target="_blank">[code]</a>
+                    <a href="http://orflee-optim-5z8y1eu8xjzt-747546465.us-east-2.elb.amazonaws.com/" class="btn-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-arrow-up-right-from-square"></i> Open live platform</a>
+                    <a href="https://github.com/bttisrael/aws-solver-pyomo#architecture" class="btn-link dashboard" target="_blank" rel="noopener noreferrer"><i class="fas fa-diagram-project"></i> View case study</a>
+                    <a href="https://github.com/bttisrael/aws-solver-pyomo" class="btn-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Source code</a>
                 </div>
             </div>
         </div>
